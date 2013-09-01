@@ -36,7 +36,6 @@ ajgenesis entity:addproperty supplier address
 ajgenesis generate
 ```
 
-
 ## Development
 
 ```
