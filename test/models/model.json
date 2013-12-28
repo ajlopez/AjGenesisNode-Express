@@ -1,0 +1,11 @@
+
+{
+    "entities": [
+        {
+            "name": "customer"
+        },
+        {
+            "name": "supplier"
+        }
+    ]
+}
