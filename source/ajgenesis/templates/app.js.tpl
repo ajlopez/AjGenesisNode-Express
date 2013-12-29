@@ -8,12 +8,13 @@ var express = require('express')
   , http = require('http')
   , path = require('path');
   
-var routes = require('./routes/index');
 
-<#  entities.forEach(function(entity) { #>var ${entity.name} = require('./routes/${entity.name}'};
+var mongodb = require('./libs/mongodb');
+var routes = require('./routes/index');
+<#  entities.forEach(function(entity) { #>var ${entity.name} = require('./routes/${entity.name}');
 <#  }); #>
-var db = mongorepo.openDatabase('${project.name}', '${mongodb.host}', ${mongodb.port});
-customers.initialize(db); 
+
+var db = mongodb.openDatabase('${project.name}', '${mongodb.host}', ${mongodb.port});
 
 var app = express();
 
@@ -44,7 +45,7 @@ app.get('/contact', routes.contact);
 <#  entities.forEach(function(entity) { #>
 app.get('/${entity.name}', ${entity.name}.index);
 app.get('/${entity.name}/new', ${entity.name}.create);
-app.post('/${entity.name}/new', ${entity.name}.insert);
+app.post('/${entity.name}/new', ${entity.name}.add);
 app.get('/${entity.name}/:id', ${entity.name}.view);
 app.get('/${entity.name}/:id/edit', ${entity.name}.edit);
 app.post('/${entity.name}/:id/edit', ${entity.name}.update);
