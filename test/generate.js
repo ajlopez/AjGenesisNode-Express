@@ -23,10 +23,20 @@ exports['generate controllers'] = function (test) {
     generatetask(model, [], ajgenesis, function (err, result) {
         test.equal(err, null);
         test.equal(result, null);
+        
         fs.existsSync('build');
+        
+        fs.existsSync(path.join('build', 'app.js'));
+        
         fs.existsSync(path.join('build', 'routes'));
+        fs.existsSync(path.join('build', 'routes', 'index.js'));
         fs.existsSync(path.join('build', 'routes', 'customer.js'));
         fs.existsSync(path.join('build', 'routes', 'supplier.js'));
+        
+        fs.existsSync(path.join('build', 'services'));
+        fs.existsSync(path.join('build', 'services', 'customer.js'));
+        fs.existsSync(path.join('build', 'services', 'supplier.js'));
+        
         process.chdir(cwd);
         
         test.done();

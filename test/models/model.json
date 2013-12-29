@@ -1,5 +1,13 @@
 
 {
+    "project": {
+        "name": "myproject",
+        "descriptor": "My Project"
+    },
+    "mongodb": {
+        "host": "localhost",
+        "port": 27017
+    },
     "entities": [
         {
             "name": "customer"
