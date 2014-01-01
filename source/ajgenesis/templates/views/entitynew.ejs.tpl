@@ -1,6 +1,6 @@
 <% layout('layout') -%>
 <div class="row actions">
-<a class="btn btn-info" href="/${entity.name}">${entity.setdescriptor}</a>
+<a class="btn btn-info btn-sm" href="/${entity.name}">${entity.setdescriptor}</a>
 </div>
 
 <div class='row'>
