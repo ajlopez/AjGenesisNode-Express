@@ -7,7 +7,23 @@ exports['Normalize'] = function (test) {
     test.equal(utils.normalize('Name'), 'name');
 };
 
+exports['Normalize null'] = function (test) {
+    test.equal(utils.normalize(null), null);
+};
+
 exports['Pluralize'] = function (test) {
     test.equal(utils.pluralize('customer'), 'customers');
     test.equal(utils.pluralize('supplier'), 'suppliers');
+};
+
+exports['Pluralize null'] = function (test) {
+    test.equal(utils.pluralize(null), null);
+};
+
+exports['Pluralize plural'] = function (test) {
+    test.equal(utils.pluralize('customers'), 'customers');
+};
+
+exports['Pluralize word ending with y'] = function (test) {
+    test.equal(utils.pluralize('city'), 'cities');
 };
