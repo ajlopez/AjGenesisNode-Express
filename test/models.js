@@ -2,11 +2,11 @@
 var models = require('../source/ajgenesis/libs/models');
 
 exports['Complete model'] = function (test) {
-    var model = { name: 'project' };
+    var model = { project: { name: 'project' } };
     
     models.completeModel(model);
     
-    test.equal(model.descriptor, 'Project');
+    test.equal(model.project.descriptor, 'Project');
 };
 
 exports['Complete model with entities and properties'] = function (test) {

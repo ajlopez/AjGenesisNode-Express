@@ -35,6 +35,9 @@ function completeModel(model) {
     if (model.name && !model.descriptor)
         model.descriptor = utils.capitalize(model.name);
         
+    if (model.project && model.project.name && !model.project.descriptor)
+        model.project.descriptor = utils.capitalize(model.project.name);
+        
     if (model.entities)
         model.entities.forEach(function (entity) {
             completeEntity(entity);

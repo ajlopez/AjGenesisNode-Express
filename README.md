@@ -9,23 +9,32 @@ Install [AjGenesis for Node](https://github.com/ajlopez/AjGenesisNode) globally 
 npm install -g ajgenesis
 ```
 
-## Usage
+## Setup
 
-Creates an application and generate the web site
-```
-ajgenesis express:create mywebapp
-cd mywebapp
-ajgenesis generate
-```
+Install [Node.js](http://nodejs.org).
 
-It will generate a `build` directory with the web site. Run the web site with:
+Install globally latests version of AjGenesis for Node, and Entity module:
 ```
-cd mywebapp
-npm install
-node app
+npm install ajgenesis -g
+npm install ajgenesisnode-entity -g
 ```
 
-If you want to add an entity, back to project directory, and run:
+## Quick start
+
+In any directory, create an application
+```
+ajgenesis express:create demo
+cd demo
+```
+
+The new directory has subdirectories:
+
+- `models`: where the free model files reside.
+- `ajgenesis`: additional tasks and remplates for AjGenesis.
+- `site`: initial static files for a new web site.
+
+Add some entities and propeties:
+
 ```
 ajgenesis entity:add customer
 ajgenesis entity:addproperty customer name
@@ -33,8 +42,32 @@ ajgenesis entity:addproperty customer address
 ajgenesis entity:add supplier
 ajgenesis entity:addproperty supplier name
 ajgenesis entity:addproperty supplier address
+```
+
+The new .json files will be added to `models` director.
+
+Generate the web site:
+
+```
 ajgenesis generate
 ```
+
+The web site is generated in a new directory `build`.
+
+Install the dependencies
+```
+cd build
+npm install
+```
+
+The site use MongoDB. Install it from [here](http://www.mongodb.org/).
+
+Start the site
+```
+npm start
+```
+
+The site is available in your browser using `http://localhost:3000`.
 
 ## Development
 
