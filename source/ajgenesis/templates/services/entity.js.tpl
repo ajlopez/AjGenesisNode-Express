@@ -11,15 +11,15 @@ function add(entity, cb) {
     repository.insert(entity, cb);
 }
 
-function update(entity, cb) {
-    repository.update(entity, cb);
+function update(id, entity, cb) {
+    repository.update(id, entity, cb);
 }
 
 function remove(id, cb) {
     repository.remove(id, cb);
 }
 
-function getById(id) {
+function getById(id, cb) {
     repository.findById(id, cb);
 }
 

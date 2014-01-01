@@ -1,8 +1,8 @@
 
-var service = require('../services/${entity.name}');
+var services = require('../services/${entity.name}');
 
 function index(req, res) {
-    service.getAll(function (err, items) {
+    services.getAll(function (err, items) {
         if (err)
             error(err, req, res);
         else
@@ -11,7 +11,7 @@ function index(req, res) {
 }
 
 function view(req, res) {
-    service.getById(req.params.id, function (err, item) {
+    services.getById(req.params.id, function (err, item) {
         if (err)
             error(err, req, res);
         else
@@ -35,7 +35,7 @@ function add(req, res) {
 }
 
 function edit(req, res) {
-    service.getById(req.params.id, function (err, item) {
+    services.getById(req.params.id, function (err, item) {
         if (err)
             error(err, req, res);
         else
@@ -46,7 +46,7 @@ function edit(req, res) {
 function update(req, res) {
     var entity = getEntity(req);
     
-    services.update(entity, function (err, entity) {
+    services.update(req.params.id, entity, function (err, entity) {
         if (err)
             error(err, req, res);
         else
@@ -61,6 +61,16 @@ function remove(req, res) {
         else
             index(req,res);
     });
+}
+
+function getEntity(req) {
+    var entity = { };
+    
+<# entity.properties.forEach(function (property) { #>
+    entity.${property.name} = req.param('${property.name}');
+<# }); #>    
+
+    return entity;
 }
 
 module.exports = {
