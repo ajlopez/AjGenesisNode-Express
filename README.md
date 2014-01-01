@@ -2,21 +2,15 @@
 
 AjGenesisNode Express tasks and templates, to generate web sites using Express. WIP.
 
-## Installation
-
-Install [AjGenesis for Node](https://github.com/ajlopez/AjGenesisNode) globally using:
-```
-npm install -g ajgenesis
-```
-
 ## Setup
 
 Install [Node.js](http://nodejs.org).
 
-Install globally latests version of AjGenesis for Node, and Entity module:
+Install globally latests version of AjGenesis for Node, Entity and Express modules:
 ```
 npm install ajgenesis -g
 npm install ajgenesisnode-entity -g
+npm install ajgenesisnode-express -g
 ```
 
 ## Quick start
@@ -26,6 +20,8 @@ In any directory, create an application
 ajgenesis express:create demo
 cd demo
 ```
+
+The AjGenesis `express` module is installed automatically from `ajgenesisnode-express`, if it is not already installed.
 
 The new directory has subdirectories:
 
@@ -82,7 +78,7 @@ npm test
 
 ## Versions
 
-- 0.0.1: WIP
+- 0.0.1: Published.
 
 ## Contribution
 
