@@ -27,7 +27,7 @@ exports['create application'] = function (test) {
         
         test.ok(fs.existsSync(path.join(dirname, 'models')));
         test.ok(fs.existsSync(path.join(dirname, 'models', 'mongodb.json')));
-        
+        test.ok(fs.existsSync(path.join(dirname, 'models', 'project.json')));        
         removeDirSync(dirname);
         test.done();
     });
