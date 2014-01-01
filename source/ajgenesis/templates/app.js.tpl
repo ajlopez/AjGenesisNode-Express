@@ -14,8 +14,6 @@ var routes = require('./routes/index');
 <#  entities.forEach(function(entity) { #>var ${entity.name} = require('./routes/${entity.name}');
 <#  }); #>
 
-var db = mongodb.openDatabase('${project.name}', '${mongodb.host}', ${mongodb.port});
-
 var app = express();
 
 app.engine('ejs', engine);
@@ -52,6 +50,19 @@ app.post('/${entity.name}/:id/edit', ${entity.name}.update);
 app.get('/${entity.name}/:id/remove', ${entity.name}.remove);
 <#  }); #>
 
-http.createServer(app).listen(app.get('port'), function(){
-  console.log('Express server listening on port ' + app.get('port'));
+mongodb.openDatabase('${project.name}', '${mongodb.host}', ${mongodb.port}, function (err, db) {
+    if (err) {
+        console.log(err);
+        return;
+    }
+    
+<#  entities.forEach(function(entity) { #>
+    require('./services/${entity.name}').initialize(db);
+<#  }); #>
+        
+    http.createServer(app).listen(app.get('port'), function(){
+      console.log('Express server listening on port ' + app.get('port'));
+    });
 });
+
+

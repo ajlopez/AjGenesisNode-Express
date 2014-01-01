@@ -19,7 +19,15 @@ function pluralize(text) {
     return text + 's';
 }
 
+function capitalize(text) {
+    if (!text)
+        return null;
+        
+    return text.charAt(0).toUpperCase() + text.substring(1);
+}
+
 module.exports = {
     normalize: normalize,
-    pluralize: pluralize
+    pluralize: pluralize,
+    capitalize: capitalize
 };

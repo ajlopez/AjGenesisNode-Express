@@ -1,7 +1,10 @@
 
-var path = require('path');
+var path = require('path'),
+    models = require('../libs/models');
 
 function generate(model, args, ajgenesis, cb) {
+    models.completeModel(model);
+    
     var routesdir = path.join('build', 'routes');
     var servicesdir = path.join('build', 'services');
     

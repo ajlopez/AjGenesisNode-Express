@@ -27,3 +27,14 @@ exports['Pluralize plural'] = function (test) {
 exports['Pluralize word ending with y'] = function (test) {
     test.equal(utils.pluralize('city'), 'cities');
 };
+
+exports['Capitalize'] = function (test) {
+    test.equal(utils.capitalize('city'), 'City');
+    test.equal(utils.capitalize('customers'), 'Customers');
+    test.equal(utils.capitalize('i'), 'I');
+};
+
+exports['Capitalize null'] = function (test) {
+    test.equal(utils.capitalize(null), null);
+};
+

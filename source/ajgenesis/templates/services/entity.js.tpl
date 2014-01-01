@@ -23,7 +23,7 @@ function getById(id) {
     repository.findById(id, cb);
 }
 
-function getAll() {
+function getAll(cb) {
     repository.findAll(cb);
 }
 

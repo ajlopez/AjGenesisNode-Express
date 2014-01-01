@@ -11,10 +11,18 @@
     },
     "entities": [
         {
-            "name": "customer"
+            "name": "customer",
+            "properties": [
+                { "name": "name" },
+                { "name": "address" }
+            ]
         },
         {
-            "name": "supplier"
+            "name": "supplier",
+            "properties": [
+                { "name": "name" },
+                { "name": "address" }
+            ]
         }
     ]
 }
