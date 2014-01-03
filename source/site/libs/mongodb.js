@@ -61,6 +61,15 @@ function Repository(db, name) {
                 collection.findOne({ _id: collection.db.bson_serializer.ObjectID.createFromHexString(id) }, callback);
         });
     };
+    
+    this.clear = function (callback) {
+        getCollection(function (err, collection) {
+            if (err)
+                callback(err);
+            else
+                collection.remove(callback);
+        });
+    };
 };
 
 module.exports = {
