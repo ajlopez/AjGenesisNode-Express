@@ -9,7 +9,7 @@
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- Bootstrap -->
-    <link href="/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/bower_components/bootstrap-css/css/bootstrap.min.css" rel="stylesheet">
     <link href="/css/jumbotron.css" rel="stylesheet">
     <link href="/css/style.css" rel="stylesheet">
 
@@ -53,8 +53,8 @@
     <%- body %>
 
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-    <script src="/js/jquery.js"></script>
+    <script src="/bower_components/jquery/jquery.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
-    <script src="/js/bootstrap.min.js"></script>
+    <script src="/bower_components/bootstrap-css/js/bootstrap.min.js"></script>
   </body>
 </html>

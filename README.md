@@ -13,6 +13,11 @@ npm install ajgenesisnode-entity -g
 npm install ajgenesisnode-express -g
 ```
 
+For install generate site dependencies, you need to install `bower`:
+```
+npm install bower -g
+```
+
 ## Quick start
 
 In any directory, create an application
@@ -54,6 +59,7 @@ Install the dependencies
 ```
 cd build
 npm install
+bower install
 ```
 
 The site use MongoDB. Install it from [here](http://www.mongodb.org/).
@@ -79,6 +85,12 @@ npm test
 ## Versions
 
 - 0.0.1: Published.
+- 0.0.2: Under development.
+
+## References
+
+- [Using bootstrap with bower](http://stackoverflow.com/questions/14450408/using-bootstrap-with-bower)
+- [Bower](https://github.com/bower/bower)
 
 ## Contribution
 
