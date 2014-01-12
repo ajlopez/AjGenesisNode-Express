@@ -89,6 +89,10 @@ npm test
 
 ## References
 
+Useful articles to use in development:
+
+- [How to change bower's default components folder?](http://stackoverflow.com/questions/14079833/how-to-change-bowers-default-components-folder)
+- [Express.js routing for bower components](http://stackoverflow.com/questions/18333310/express-js-routing-for-bower-components)
 - [Using bootstrap with bower](http://stackoverflow.com/questions/14450408/using-bootstrap-with-bower)
 - [Bower](https://github.com/bower/bower)
 
