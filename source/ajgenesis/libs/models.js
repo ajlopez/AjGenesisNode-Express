@@ -1,7 +1,18 @@
 
 var utils = require('./utils');
 
-function completeProperty(property) {
+function getEntityByName(entities, name) {
+    for (var n in entities) {
+        var entity = entities[n];
+        
+        if (entity.name == name)
+            return entity
+    }
+    
+    return null;
+}
+
+function completeProperty(property, entities) {
     if (!property)
         return;
         
@@ -10,9 +21,14 @@ function completeProperty(property) {
         
     if (!property.type)
         property.type = 'text';
+        
+    if (property.reference) {
+        property.type = 'reference';
+        property.reference = getEntityByName(entities, property.reference);
+    }
 }
 
-function completeEntity(entity) {
+function completeEntity(entity, entities) {
     if (!entity)
         return;
         
@@ -24,7 +40,7 @@ function completeEntity(entity) {
         
     if (entity.properties)
         entity.properties.forEach(function (property) {
-            completeProperty(property);
+            completeProperty(property, entities);
         });
 }
 
@@ -40,7 +56,7 @@ function completeModel(model) {
         
     if (model.entities)
         model.entities.forEach(function (entity) {
-            completeEntity(entity);
+            completeEntity(entity, model.entities);
         });
 }
 

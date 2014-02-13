@@ -46,3 +46,43 @@ exports['Complete model with entities and properties'] = function (test) {
     test.equal(model.entities[0].properties[1].type, 'text');
 };
 
+exports['Complete model with reference'] = function (test) {
+    var model = { 
+        name: 'project',
+        
+        entities: [
+            { 
+                name: 'employee',
+                properties: [
+                    {
+                        name: 'name'
+                    },
+                    {
+                        name: 'department',
+                        reference: 'department'
+                    }
+                ]
+            },
+            { 
+                name: 'department'
+            }
+        ]
+    };
+    
+    models.completeModel(model);
+    
+    test.equal(model.descriptor, 'Project');
+
+    test.equal(model.entities[0].descriptor, 'Employee');
+    test.equal(model.entities[0].setdescriptor, 'Employees');
+    test.equal(model.entities[1].descriptor, 'Department');
+    test.equal(model.entities[1].setdescriptor, 'Departments');
+    
+    test.equal(model.entities[0].properties[0].descriptor, 'Name');
+    test.equal(model.entities[0].properties[0].type, 'text');
+    test.equal(model.entities[0].properties[1].descriptor, 'Department');
+    test.equal(model.entities[0].properties[1].type, 'reference');
+    test.equal(model.entities[0].properties[1].reference.name, 'department');
+    test.equal(model.entities[0].properties[1].reference.descriptor, 'Department');
+    test.equal(model.entities[0].properties[1].reference.setdescriptor, 'Departments');
+};
