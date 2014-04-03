@@ -28,8 +28,6 @@ exports['generate controllers'] = function (test) {
         
         test.ok(fs.existsSync(path.join('build', 'app.js')));
         test.ok(fs.existsSync(path.join('build', 'package.json')));
-        test.ok(fs.existsSync(path.join('build', 'bower.json')));
-        test.ok(fs.existsSync(path.join('build', '.bowerrc')));
 
         test.ok(fs.existsSync(path.join('build', 'public')));
         

@@ -14,7 +14,6 @@ function generate(model, args, ajgenesis, cb) {
 
     ajgenesis.fileTransform(path.join(__dirname, '..', 'templates', 'app.js.tpl'), path.join('build', 'app.js'), model);
     ajgenesis.fileTransform(path.join(__dirname, '..', 'templates', 'package.json.tpl'), path.join('build', 'package.json'), model);
-    ajgenesis.fileTransform(path.join(__dirname, '..', 'templates', 'bower.json.tpl'), path.join('build', 'bower.json'), model);
 
     ajgenesis.fileTransform(path.join(__dirname, '..', 'templates', 'views', 'layout.ejs.tpl'), path.join('build', 'views', 'layout.ejs'), model);
     ajgenesis.fileTransform(path.join(__dirname, '..', 'templates', 'views', 'layoutjumbo.ejs.tpl'), path.join('build', 'views', 'layoutjumbo.ejs'), model);
