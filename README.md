@@ -13,11 +13,6 @@ npm install ajgenesisnode-entity -g
 npm install ajgenesisnode-express -g
 ```
 
-For install generate site dependencies, you need to install `bower`:
-```
-npm install bower -g
-```
-
 ## Quick start
 
 In any directory, create an application
@@ -59,7 +54,6 @@ Install the dependencies
 ```
 cd build
 npm install
-bower install
 ```
 
 The site use MongoDB. Install it from [here](http://www.mongodb.org/).
