@@ -14,14 +14,16 @@
             "name": "customer",
             "properties": [
                 { "name": "name" },
-                { "name": "address" }
+                { "name": "address" },
+                { "name": "notes", "type": "text" }
             ]
         },
         {
             "name": "supplier",
             "properties": [
                 { "name": "name" },
-                { "name": "address" }
+                { "name": "address" },
+                { "name": "notes", "type": "text" }
             ]
         }
     ]

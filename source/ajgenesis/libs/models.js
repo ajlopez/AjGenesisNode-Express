@@ -20,7 +20,7 @@ function completeProperty(property, entities) {
         property.descriptor = utils.capitalize(property.name);
         
     if (!property.type)
-        property.type = 'text';
+        property.type = 'string';
         
     if (property.reference) {
         property.type = 'reference';
@@ -63,3 +63,4 @@ function completeModel(model) {
 module.exports = {
     completeModel: completeModel
 };
+
