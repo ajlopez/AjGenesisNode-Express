@@ -11,8 +11,9 @@ module.exports = function (model, args, ajgenesis, cb) {
             cb(err, null);
             return;
         }
-    
-        ajgenesis.fileTransform(path.join(__dirname, 'templates', 'project.json.tpl'), path.join(dirname, 'models', 'project.json'), { name: dirname });
+
+        ajgenesis.createDirectory(dirname, 'ajgenesis', 'models');
+        ajgenesis.fileTransform(path.join(__dirname, 'templates', 'project.json.tpl'), path.join(dirname, 'ajgenesis', 'models', 'project.json'), { name: dirname });
         
         cb(null, result);
     });

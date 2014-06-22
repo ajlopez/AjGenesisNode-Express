@@ -25,9 +25,9 @@ exports['create application'] = function (test) {
         test.ok(fs.existsSync(path.join(dirname, 'ajgenesis', 'tasks')));
         test.ok(fs.existsSync(path.join(dirname, 'ajgenesis', 'libs')));
         
-        test.ok(fs.existsSync(path.join(dirname, 'models')));
-        test.ok(fs.existsSync(path.join(dirname, 'models', 'mongodb.json')));
-        test.ok(fs.existsSync(path.join(dirname, 'models', 'project.json')));        
+        test.ok(fs.existsSync(path.join(dirname, 'ajgenesis', 'models')));
+        test.ok(fs.existsSync(path.join(dirname, 'ajgenesis', 'models', 'mongodb.json')));
+        test.ok(fs.existsSync(path.join(dirname, 'ajgenesis', 'models', 'project.json')));        
         removeDirSync(dirname);
         test.done();
     });
