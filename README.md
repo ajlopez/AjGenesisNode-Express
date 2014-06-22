@@ -83,8 +83,8 @@ npm test
 
 ## Versions
 
-- 0.0.1: Published.
-- 0.0.2: Under development.
+- 0.0.1: Published
+- 0.0.2: Published. Use of local `entity` module. Models in `ajgenesis/models`
 
 ## References
 
