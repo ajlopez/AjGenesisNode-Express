@@ -11,7 +11,7 @@ exports['generate controllers'] = function (test) {
     
     process.chdir('test');
     
-    var model = ajgenesis.loadModel('models');
+    var model = ajgenesis.loadModel();
     
     test.ok(model.entities);
     test.ok(Array.isArray(model.entities));
