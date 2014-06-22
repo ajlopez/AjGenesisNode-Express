@@ -6,10 +6,9 @@ AjGenesisNode Express tasks and templates, to generate web sites using Express. 
 
 Install [Node.js](http://nodejs.org).
 
-Install globally latests version of AjGenesis for Node, Entity and Express modules:
+Install globally latests version of AjGenesis for Node and Express modules:
 ```
 npm install ajgenesis -g
-npm install ajgenesisnode-entity -g
 npm install ajgenesisnode-express -g
 ```
 
@@ -21,13 +20,18 @@ ajgenesis express:create demo
 cd demo
 ```
 
-The AjGenesis `express` module is installed automatically from `ajgenesisnode-express`, if it is not already installed.
-
 The new directory has subdirectories:
 
-- `models`: where the free model files reside.
-- `ajgenesis`: additional tasks and remplates for AjGenesis.
-- `site`: initial static files for a new web site.
+- `ajgenesis/models`: where the free model files reside
+- `ajgenesis/tasks`: tasks to run
+- `ajgenesis/templates`: templates to be used
+- `ajgenesis/libs`: additional modules used by tasks
+- `site`: initial static files for a new web site
+
+Install the auxiliary `entity` module
+```
+npm instal ajgenesisnode-entity
+```
 
 Add some entities and propeties:
 
@@ -40,7 +44,8 @@ ajgenesis entity:addproperty supplier name
 ajgenesis entity:addproperty supplier address
 ```
 
-The new .json files will be added to `models` director.
+The new .json files will be added to `ajgenesis/models` folder. You can edit those file manually, instead
+of relaying in auxiliary `entity` module.
 
 Generate the web site:
 
