@@ -22,6 +22,11 @@ module.exports = function (model, args, ajgenesis, cb) {
 
         ajgenesis.createDirectory(dirname, 'bin');
         ajgenesis.fileTransform(path.join(__dirname, 'source', 'ajgenesis', 'templates', 'bin', 'www.tpl'), path.join(dirname, 'bin', 'www'), model);
+
+        ajgenesis.createDirectory(dirname, 'views');
+        ajgenesis.fileTransform(path.join(__dirname, 'source', 'ajgenesis', 'templates', 'views', 'header.ejs.tpl'), path.join(dirname, 'views', 'header.ejs'), model);
+        ajgenesis.fileTransform(path.join(__dirname, 'source', 'ajgenesis', 'templates', 'views', 'headerjumbo.ejs.tpl'), path.join(dirname, 'views', 'headerjumbo.ejs'), model);
+        ajgenesis.fileTransform(path.join(__dirname, 'source', 'ajgenesis', 'templates', 'views', 'footer.ejs.tpl'), path.join(dirname, 'views', 'footer.ejs'), model);
         
         cb(null, result);
     });
