@@ -1,7 +1,7 @@
 
 {
     "project": {
-        "name": "${name}"
+        "name": "${project.name}"
     }
 }
 

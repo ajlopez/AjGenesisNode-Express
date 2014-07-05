@@ -16,8 +16,9 @@ function generate(model, args, ajgenesis, cb) {
     ajgenesis.fileTransform(path.join(__dirname, '..', 'templates', 'app.js.tpl'), 'app.js', model);
     ajgenesis.fileTransform(path.join(__dirname, '..', 'templates', 'package.json.tpl'), 'package.json', model);
 
-    ajgenesis.fileTransform(path.join(__dirname, '..', 'templates', viewsdir, 'layout.ejs.tpl'), path.join(viewsdir, 'layout.ejs'), model);
-    ajgenesis.fileTransform(path.join(__dirname, '..', 'templates', viewsdir, 'layoutjumbo.ejs.tpl'), path.join(viewsdir, 'layoutjumbo.ejs'), model);
+    ajgenesis.fileTransform(path.join(__dirname, '..', 'templates', viewsdir, 'header.ejs.tpl'), path.join(viewsdir, 'header.ejs'), model);
+    ajgenesis.fileTransform(path.join(__dirname, '..', 'templates', viewsdir, 'headerjumbo.ejs.tpl'), path.join(viewsdir, 'headerjumbo.ejs'), model);
+    ajgenesis.fileTransform(path.join(__dirname, '..', 'templates', viewsdir, 'footer.ejs.tpl'), path.join(viewsdir, 'footer.ejs'), model);
     
     model.entities.forEach(function (entity) {
         model.entity = entity;

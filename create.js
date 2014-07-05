@@ -11,10 +11,17 @@ module.exports = function (model, args, ajgenesis, cb) {
             cb(err, null);
             return;
         }
+        
+        var model = { project: { name: dirname, version: '0.0.1'} , entities: [] };
+
+        ajgenesis.fileTransform(path.join(__dirname, 'source', 'ajgenesis', 'templates', 'package.json.tpl'), path.join(dirname, 'package.json'), model);
+        ajgenesis.fileTransform(path.join(__dirname, 'source', 'ajgenesis', 'templates', 'app.js.tpl'), path.join(dirname, 'app.js'), model);
 
         ajgenesis.createDirectory(dirname, 'ajgenesis', 'models');
-        ajgenesis.fileTransform(path.join(__dirname, 'templates', 'project.json.tpl'), path.join(dirname, 'ajgenesis', 'models', 'project.json'), { name: dirname });
-        ajgenesis.fileTransform(path.join(__dirname, 'templates', 'package.json.tpl'), path.join(dirname, 'package.json'), { name: dirname });
+        ajgenesis.fileTransform(path.join(__dirname, 'templates', 'project.json.tpl'), path.join(dirname, 'ajgenesis', 'models', 'project.json'), model);
+
+        ajgenesis.createDirectory(dirname, 'bin');
+        ajgenesis.fileTransform(path.join(__dirname, 'source', 'ajgenesis', 'templates', 'bin', 'www.tpl'), path.join(dirname, 'bin', 'www'), model);
         
         cb(null, result);
     });

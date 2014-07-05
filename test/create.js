@@ -14,8 +14,15 @@ exports['create application'] = function (test) {
         
         test.ok(fs.existsSync(dirname));
         
+        test.ok(fs.existsSync(path.join(dirname, 'app.js')));
+        test.ok(fs.existsSync(path.join(dirname, 'package.json')));
+        
+        test.ok(fs.existsSync(path.join(dirname, 'bin')));
+        test.ok(fs.existsSync(path.join(dirname, 'bin', 'www')));
+        
         test.ok(fs.existsSync(path.join(dirname, 'views')));
         test.ok(fs.existsSync(path.join(dirname, 'public')));
+        test.ok(fs.existsSync(path.join(dirname, 'controllers')));
         test.ok(fs.existsSync(path.join(dirname, 'routes')));
         test.ok(fs.existsSync(path.join(dirname, 'libs')));
         

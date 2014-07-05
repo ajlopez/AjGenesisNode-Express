@@ -26,8 +26,12 @@ exports['generate controllers'] = function (test) {
     generatetask(model, [], ajgenesis, function (err, result) {
         test.equal(err, null);
         test.equal(result, null);
-        
-        // test.ok(fs.existsSync(path.join('views', 'index.ejs')));
+
+        //test.ok(fs.existsSync(path.join('views', 'index.ejs')));
+        //test.ok(fs.existsSync(path.join('views', 'error.ejs')));
+        test.ok(fs.existsSync(path.join('views', 'header.ejs')));
+        test.ok(fs.existsSync(path.join('views', 'headerjumbo.ejs')));
+        test.ok(fs.existsSync(path.join('views', 'footer.ejs')));
 
         test.ok(fs.existsSync(path.join('views', 'customerlist.ejs')));
         test.ok(fs.existsSync(path.join('views', 'customerview.ejs')));

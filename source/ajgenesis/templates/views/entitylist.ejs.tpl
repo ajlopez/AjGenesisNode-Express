@@ -1,4 +1,4 @@
-<% layout('layout') -%>
+<% include header %>
 
 <div class="row actions">
 <a class="btn btn-primary btn-sm" href="/${entity.name}/new">New ${entity.descriptor}</a>
@@ -21,3 +21,4 @@
     </table>
 </div>
 
+<% include footer %>

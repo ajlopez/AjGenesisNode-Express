@@ -1,4 +1,4 @@
-<% layout('layout') -%>
+<% include header %>
 
 <div class="row actions">
 <a class="btn btn-info btn-sm" href="/${entity.name}">${entity.setdescriptor}</a>
@@ -17,3 +17,4 @@
     </table>
 </div>
 
+<% include footer %>

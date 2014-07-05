@@ -1,13 +1,9 @@
 
-exports.index = function(req, res){
-  res.render('index', { title: 'Home' });
-};
+var express = require('express');
+var router = express.Router();
+var controller = require('../controllers/index');
 
-exports.about = function(req, res){
-  res.render('index', { title: 'About' });
-};
+/* GET home page. */
+router.get('/', controller.index);
 
-exports.contact = function(req, res){
-  res.render('index', { title: 'Contact' });
-};
-
+module.exports = router;
