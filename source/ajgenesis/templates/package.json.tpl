@@ -13,6 +13,7 @@
     "mongodb": "1.3.23"
   },
   "devDependencies": {
-    "simpleunit": "0.0.2"
+    "ajgenesisnode-entity": "0.0.5",
+    "ajgenesisnode-model": "0.0.2"
   }
 }
