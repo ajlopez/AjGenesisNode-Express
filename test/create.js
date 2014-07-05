@@ -14,11 +14,10 @@ exports['create application'] = function (test) {
         
         test.ok(fs.existsSync(dirname));
         
-        test.ok(fs.existsSync(path.join(dirname, 'site')));
-        test.ok(fs.existsSync(path.join(dirname, 'site', 'views')));
-        test.ok(fs.existsSync(path.join(dirname, 'site', 'public')));
-        test.ok(fs.existsSync(path.join(dirname, 'site', 'routes')));
-        test.ok(fs.existsSync(path.join(dirname, 'site', 'libs')));
+        test.ok(fs.existsSync(path.join(dirname, 'views')));
+        test.ok(fs.existsSync(path.join(dirname, 'public')));
+        test.ok(fs.existsSync(path.join(dirname, 'routes')));
+        test.ok(fs.existsSync(path.join(dirname, 'libs')));
         
         test.ok(fs.existsSync(path.join(dirname, 'ajgenesis')));
         test.ok(fs.existsSync(path.join(dirname, 'ajgenesis', 'templates')));
