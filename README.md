@@ -6,35 +6,33 @@ AjGenesisNode Express tasks and templates, to generate web sites using Express. 
 
 Install [Node.js](http://nodejs.org).
 
-Install globally latests version of AjGenesis for Node and Express modules:
+Install latests version of AjGenesis for Node and Express modules as global modules:
 ```
 npm install ajgenesis -g
 npm install ajgenesisnode-express -g
 ```
+In Linux, you should use `sudo npm ...` to install global modules
 
 ## Quick start
 
-In any directory, create an application
+In any working directory, create an application
 ```
 ajgenesis express:create demo
 cd demo
+npm install
 ```
 
-The new directory has subdirectories:
+The created directory contains the seed of an Express 3.x application.
+
+And there is a subdirectory `ajgenesis` with:
 
 - `ajgenesis/models`: where the free model files reside
 - `ajgenesis/tasks`: tasks to run
 - `ajgenesis/templates`: templates to be used
 - `ajgenesis/libs`: additional modules used by tasks
-- `site`: initial static files for a new web site
 
-Install the auxiliary `entity` module
-```
-npm instal ajgenesisnode-entity
-```
 
-Add some entities and propeties:
-
+Let add some entities and propeties:
 ```
 ajgenesis entity:add customer
 ajgenesis entity:addproperty customer name
@@ -44,7 +42,7 @@ ajgenesis entity:addproperty supplier name
 ajgenesis entity:addproperty supplier address
 ```
 
-The new .json files will be added to `ajgenesis/models` folder. You can edit those file manually, instead
+`.json` files are added to `ajgenesis/models` folder. You can edit those file manually, instead
 of relaying in auxiliary `entity` module.
 
 Generate the web site:
@@ -53,13 +51,7 @@ Generate the web site:
 ajgenesis generate
 ```
 
-The web site is generated in a new directory `build`.
-
-Install the dependencies
-```
-cd build
-npm install
-```
+The web site is generated in the current directory.
 
 The site use MongoDB. Install it from [here](http://www.mongodb.org/).
 
@@ -85,6 +77,7 @@ npm test
 
 - 0.0.1: Published
 - 0.0.2: Published. Use of local `entity` module. Models in `ajgenesis/models`
+- 0.0.3: Published. Use the current directory as Express application instead of `build`
 
 ## References
 
