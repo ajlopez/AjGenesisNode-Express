@@ -50,10 +50,17 @@ exports['generate controllers'] = function (test) {
         // test.ok(fs.existsSync(path.join('routes', 'index.js')));
         test.ok(fs.existsSync(path.join('routes', 'customer.js')));
         test.ok(fs.existsSync(path.join('routes', 'supplier.js')));
+
+        test.ok(fs.existsSync(path.join('controllers')));
+        // test.ok(fs.existsSync(path.join('controllers', 'index.js')));
+        test.ok(fs.existsSync(path.join('controllers', 'customer.js')));
+        test.ok(fs.existsSync(path.join('controllers', 'supplier.js')));
         
         test.ok(fs.existsSync(path.join('services')));
         test.ok(fs.existsSync(path.join('services', 'customer.js')));
         test.ok(fs.existsSync(path.join('services', 'supplier.js')));
+
+        test.ok(fs.existsSync(path.join('bin', 'www')));
         
         process.chdir(cwd);
         

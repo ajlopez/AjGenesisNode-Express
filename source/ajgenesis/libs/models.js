@@ -54,7 +54,10 @@ function completeModel(model) {
     if (model.project && model.project.name && !model.project.descriptor)
         model.project.descriptor = utils.capitalize(model.project.name);
         
-    if (model.entities)
+    if (!model.entities)
+        model.entities = [];
+  
+    if (Array.isArray(model.entities))
         model.entities.forEach(function (entity) {
             completeEntity(entity, model.entities);
         });
