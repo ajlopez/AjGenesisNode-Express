@@ -22,7 +22,7 @@ cd demo
 npm install
 ```
 
-The created directory contains the seed of an Express 3.x application.
+The created directory contains the seed of an Express 4.x application.
 
 And there is a subdirectory `ajgenesis` with:
 
@@ -78,6 +78,7 @@ npm test
 - 0.0.1: Published
 - 0.0.2: Published. Use of local `entity` module. Models in `ajgenesis/models`
 - 0.0.3: Published. Use the current directory as Express application instead of `build`
+- 0.0.4: Published. Generate code for Express 4.x
 
 ## References
 
