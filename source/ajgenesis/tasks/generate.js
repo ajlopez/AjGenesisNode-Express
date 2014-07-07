@@ -5,20 +5,26 @@ var path = require('path'),
 function generate(model, args, ajgenesis, cb) {
     models.completeModel(model);
     
-    var routesdir = 'routes';
-    var controllersdir = 'controllers';
-    var servicesdir = 'services';
-    var viewsdir = 'views';
-    var bindir = 'bin';
+    if (!model.builddir)
+        model.builddir = '.';
+        
+    var builddir = model.builddir;
     
+    var routesdir = path.join(builddir, 'routes');
+    var controllersdir = path.join(builddir, 'controllers');
+    var servicesdir = path.join(builddir, 'services');
+    var viewsdir = path.join(builddir, 'views');
+    var bindir = path.join(builddir, 'bin');
+    
+    ajgenesis.createDirectory(builddir);
     ajgenesis.createDirectory(bindir);
     ajgenesis.createDirectory(routesdir);
     ajgenesis.createDirectory(controllersdir);
     ajgenesis.createDirectory(servicesdir);
     ajgenesis.createDirectory(viewsdir);
 
-    ajgenesis.fileTransform(path.join(__dirname, '..', 'templates', 'app.js.tpl'), 'app.js', model);
-    ajgenesis.fileTransform(path.join(__dirname, '..', 'templates', 'package.json.tpl'), 'package.json', model);
+    ajgenesis.fileTransform(path.join(__dirname, '..', 'templates', 'app.js.tpl'), path.join(builddir, 'app.js'), model);
+    ajgenesis.fileTransform(path.join(__dirname, '..', 'templates', 'package.json.tpl'), path.join(builddir, 'package.json'), model);
 
     ajgenesis.fileTransform(path.join(__dirname, '..', 'templates', 'bin', 'www.tpl'), path.join(bindir, 'www'), model);
 
