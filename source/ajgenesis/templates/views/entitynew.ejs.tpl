@@ -1,6 +1,6 @@
 <% include header %>
 <div class="row actions">
-<a class="btn btn-info btn-sm" href="/${entity.name}">${entity.setdescriptor}</a>
+<a class="btn btn-info btn-sm" href="/${entity.name}">${entity.settitle}</a>
 </div>
 
 <div class='row'>
@@ -8,14 +8,14 @@
 <# entity.properties.forEach(function (property) { 
     if (property.type == 'text') { #>
     <div class="form-group">
-        <label for="${property.name}">${property.descriptor}</label>
+        <label for="${property.name}">${property.title}</label>
         <textarea class="form-control" name="${property.name}" id="${property.name}"></textarea>
     </div>        
 <#
     }
     else { #>
     <div class="form-group">
-        <label for="${property.name}">${property.descriptor}</label>
+        <label for="${property.name}">${property.title}</label>
         <input type="text" class="form-control" name="${property.name}" id="${property.name}">
     </div>
 <#  }    

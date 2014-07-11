@@ -6,7 +6,7 @@ function index(req, res) {
         if (err)
             error(err, req, res);
         else
-            res.render('${entity.name}list', { title: '${entity.setdescriptor}', items: items });
+            res.render('${entity.name}list', { title: '${entity.settitle}', items: items });
     });
 }
 
@@ -15,12 +15,12 @@ function view(req, res) {
         if (err)
             error(err, req, res);
         else
-            res.render('${entity.name}view', { title: '${entity.descriptor}', item: item });
+            res.render('${entity.name}view', { title: '${entity.title}', item: item });
     });
 }
 
 function create(req, res) {
-    res.render('${entity.name}new', { title: 'New ${entity.descriptor}' });
+    res.render('${entity.name}new', { title: 'New ${entity.title}' });
 }
 
 function add(req, res) {
@@ -39,7 +39,7 @@ function edit(req, res) {
         if (err)
             error(err, req, res);
         else
-            res.render('${entity.name}edit', { title: 'Edit ${entity.descriptor}', item: item });
+            res.render('${entity.name}edit', { title: 'Edit ${entity.title}', item: item });
     });
 }
 

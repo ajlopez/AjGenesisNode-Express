@@ -1,7 +1,7 @@
 <% include header %>
 
 <div class="row actions">
-<a class="btn btn-primary btn-sm" href="/${entity.name}/new">New ${entity.descriptor}</a>
+<a class="btn btn-primary btn-sm" href="/${entity.name}/new">New ${entity.title}</a>
 </div>
 
 <div class="row">
@@ -9,7 +9,7 @@
         <tr>
             <th>&nbsp;</th>
     <#  entity.properties.forEach(function(property) { #>
-            <th>${property.descriptor}</th><# }); #>
+            <th>${property.title}</th><# }); #>
         </tr>
     <% items.forEach(function (item) { %>
         <tr>

@@ -6,7 +6,7 @@ exports['Complete model'] = function (test) {
     
     models.completeModel(model);
     
-    test.equal(model.project.descriptor, 'Project');
+    test.equal(model.project.title, 'Project');
 };
 
 exports['Complete model with entities and properties'] = function (test) {
@@ -33,16 +33,16 @@ exports['Complete model with entities and properties'] = function (test) {
     
     models.completeModel(model);
     
-    test.equal(model.descriptor, 'Project');
+    test.equal(model.title, 'Project');
 
-    test.equal(model.entities[0].descriptor, 'Customer');
-    test.equal(model.entities[0].setdescriptor, 'Customers');
-    test.equal(model.entities[1].descriptor, 'Supplier');
-    test.equal(model.entities[1].setdescriptor, 'Suppliers');
+    test.equal(model.entities[0].title, 'Customer');
+    test.equal(model.entities[0].settitle, 'Customers');
+    test.equal(model.entities[1].title, 'Supplier');
+    test.equal(model.entities[1].settitle, 'Suppliers');
     
-    test.equal(model.entities[0].properties[0].descriptor, 'Name');
+    test.equal(model.entities[0].properties[0].title, 'Name');
     test.equal(model.entities[0].properties[0].type, 'string');
-    test.equal(model.entities[0].properties[1].descriptor, 'Address');
+    test.equal(model.entities[0].properties[1].title, 'Address');
     test.equal(model.entities[0].properties[1].type, 'string');
 };
 
@@ -71,18 +71,18 @@ exports['Complete model with reference'] = function (test) {
     
     models.completeModel(model);
     
-    test.equal(model.descriptor, 'Project');
+    test.equal(model.title, 'Project');
 
-    test.equal(model.entities[0].descriptor, 'Employee');
-    test.equal(model.entities[0].setdescriptor, 'Employees');
-    test.equal(model.entities[1].descriptor, 'Department');
-    test.equal(model.entities[1].setdescriptor, 'Departments');
+    test.equal(model.entities[0].title, 'Employee');
+    test.equal(model.entities[0].settitle, 'Employees');
+    test.equal(model.entities[1].title, 'Department');
+    test.equal(model.entities[1].settitle, 'Departments');
     
-    test.equal(model.entities[0].properties[0].descriptor, 'Name');
+    test.equal(model.entities[0].properties[0].title, 'Name');
     test.equal(model.entities[0].properties[0].type, 'string');
-    test.equal(model.entities[0].properties[1].descriptor, 'Department');
+    test.equal(model.entities[0].properties[1].title, 'Department');
     test.equal(model.entities[0].properties[1].type, 'reference');
     test.equal(model.entities[0].properties[1].reference.name, 'department');
-    test.equal(model.entities[0].properties[1].reference.descriptor, 'Department');
-    test.equal(model.entities[0].properties[1].reference.setdescriptor, 'Departments');
+    test.equal(model.entities[0].properties[1].reference.title, 'Department');
+    test.equal(model.entities[0].properties[1].reference.settitle, 'Departments');
 };
