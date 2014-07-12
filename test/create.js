@@ -7,7 +7,7 @@ var createtask = require('../create'),
 exports['create application'] = function (test) {
     test.async();
     
-    var dirname = path.join('test', 'myapp');
+    var dirname = path.join('test', 'build');
     
     createtask(null, [dirname], ajgenesis, function (err, result) {
         test.equal(err, null);
@@ -30,6 +30,7 @@ exports['create application'] = function (test) {
         test.ok(fs.existsSync(path.join(dirname, 'controllers')));
         test.ok(fs.existsSync(path.join(dirname, 'routes')));
         test.ok(fs.existsSync(path.join(dirname, 'libs')));
+        test.ok(fs.existsSync(path.join(dirname, 'libs', 'mongodb.js')));
         
         test.ok(fs.existsSync(path.join(dirname, 'ajgenesis')));
         test.ok(fs.existsSync(path.join(dirname, 'ajgenesis', 'templates')));
@@ -39,7 +40,6 @@ exports['create application'] = function (test) {
         test.ok(fs.existsSync(path.join(dirname, 'ajgenesis', 'models')));
         test.ok(fs.existsSync(path.join(dirname, 'ajgenesis', 'models', 'mongodb.json')));
         test.ok(fs.existsSync(path.join(dirname, 'ajgenesis', 'models', 'project.json')));        
-        removeDirSync(dirname);
         test.done();
     });
 };
