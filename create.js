@@ -7,15 +7,22 @@ module.exports = function (model, args, ajgenesis, cb) {
     
     var source = path.resolve(path.join(__dirname, 'source'));
     
+    model = model || { };
+    
     ajgenesis.copyDirectory(source, dirname, function (err, result) {
         if (err) {
             cb(err, null);
             return;
         }
         
-        var model = { project: { name: dirname, version: '0.0.1'} , entities: [] };
+        var projmodel;
+
+        if (model.project)
+            projmodel = model.project;
+        else
+            model.project = projmodel = { project: { name: dirname, version: '0.0.1'} };
         
-        ajgenesis.saveModel(path.join(ajgenesis.getModelDirectory(dirname), 'project.json'), model);
+        ajgenesis.saveModel(path.join(ajgenesis.getModelDirectory(dirname), 'project.json'), projmodel);
 
         model.builddir = dirname;
         
