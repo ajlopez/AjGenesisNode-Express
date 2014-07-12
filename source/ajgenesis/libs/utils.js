@@ -26,8 +26,17 @@ function capitalize(text) {
     return text.charAt(0).toUpperCase() + text.substring(1);
 }
 
+function find(items, name, value) {
+    for (var n in items)
+        if (items[n][name] == value)
+            return items[n];
+            
+    return null;
+}
+
 module.exports = {
     normalize: normalize,
     pluralize: pluralize,
-    capitalize: capitalize
+    capitalize: capitalize,
+    find: find
 };

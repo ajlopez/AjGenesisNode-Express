@@ -1,6 +1,11 @@
 
 var utils = require('../source/ajgenesis/libs/utils');
 
+var entities = [
+    { name: 'customer', title: 'Customer' },
+    { name: 'supplier', title: 'Supplier' }
+];
+
 exports['Normalize'] = function (test) {
     test.equal(utils.normalize('name'), 'name');
     test.equal(utils.normalize('NAME'), 'name');
@@ -38,3 +43,22 @@ exports['Capitalize null'] = function (test) {
     test.equal(utils.capitalize(null), null);
 };
 
+exports['Find by name'] = function (test) {
+    var result = utils.find(entities, 'name', 'customer');
+    
+    test.ok(result);
+    test.strictEqual(result, entities[0]);
+};
+
+exports['Find by unknown name'] = function (test) {
+    var result = utils.find(entities, 'name', 'foo');
+    
+    test.equal(result, null);
+};
+
+exports['Find by title'] = function (test) {
+    var result = utils.find(entities, 'title', 'Supplier');
+    
+    test.ok(result);
+    test.strictEqual(result, entities[1]);
+};
