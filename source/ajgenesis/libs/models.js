@@ -2,14 +2,7 @@
 var utils = require('./utils');
 
 function getEntityByName(entities, name) {
-    for (var n in entities) {
-        var entity = entities[n];
-        
-        if (entity.name == name)
-            return entity
-    }
-    
-    return null;
+    return utils.find(entities, 'name', name);
 }
 
 function completeProperty(property, entities) {
