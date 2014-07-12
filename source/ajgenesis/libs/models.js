@@ -31,9 +31,15 @@ function completeEntity(entity, entities) {
     if (entity.title && !entity.settitle)
         entity.settitle = utils.pluralize(entity.title);
         
+    if (!entity.references)
+        entity.references = [];
+        
     if (entity.properties)
         entity.properties.forEach(function (property) {
             completeProperty(property, entities);
+            
+            if (property.reference && property.reference.name && entity.references.indexOf(property.reference) < 0)
+                entity.references.push(property.reference);
         });
 }
 

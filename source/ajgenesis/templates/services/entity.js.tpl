@@ -27,6 +27,10 @@ function getAll(cb) {
     repository.findAll(cb);
 }
 
+function getReferences(cb) {
+    var references = { };
+}
+
 module.exports = {
     initialize: initialize,
     add: add,

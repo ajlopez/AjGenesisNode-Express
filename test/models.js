@@ -44,6 +44,12 @@ exports['Complete model with entities and properties'] = function (test) {
     test.equal(model.entities[0].properties[0].type, 'string');
     test.equal(model.entities[0].properties[1].title, 'Address');
     test.equal(model.entities[0].properties[1].type, 'string');
+    
+    model.entities.forEach(function (entity) {
+        test.ok(entity.references);
+        test.ok(Array.isArray(entity.references));
+        test.equal(entity.references.length, 0);
+    });
 };
 
 exports['Complete model with reference'] = function (test) {
@@ -85,4 +91,11 @@ exports['Complete model with reference'] = function (test) {
     test.equal(model.entities[0].properties[1].reference.name, 'department');
     test.equal(model.entities[0].properties[1].reference.title, 'Department');
     test.equal(model.entities[0].properties[1].reference.settitle, 'Departments');
+    
+    test.ok(model.entities[0].references);
+    test.equal(model.entities[0].references.length, 1);
+    test.strictEqual(model.entities[0].references[0], model.entities[1]);
+
+    test.ok(model.entities[1].references);
+    test.equal(model.entities[1].references.length, 0);
 };
