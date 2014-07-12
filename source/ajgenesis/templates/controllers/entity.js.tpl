@@ -20,7 +20,19 @@ function view(req, res) {
 }
 
 function create(req, res) {
-    res.render('${entity.name}new', { title: 'New ${entity.title}' });
+    services.getReferences(function (err, references) {
+        if (err) {
+            error(err, req, res);
+            return;
+        }
+        
+        var model = { title: 'New ${entity.title}' };
+        
+        for (var n in references)
+            model[n] = references[n];
+            
+        res.render('${entity.name}new', model);
+    });
 }
 
 function add(req, res) {

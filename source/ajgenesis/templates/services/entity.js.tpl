@@ -29,6 +29,35 @@ function getAll(cb) {
 
 function getReferences(cb) {
     var references = { };
+<#
+    if (!entity.references || !entity.references.length) {
+#>
+    cb(null, references);
+<#
+    } else {
+
+    entity.references.forEach(function (ref) {
+#>
+    var s${ref.name} = require('./${ref.name}');
+    
+    function get${ref.setname}(next) {
+        s${ref.name}.getAll(function (err, items) {
+            if (err) {
+                cb(err, references);
+                return;
+            }
+            
+            references.${ref.setname} = items;
+            next();
+        });
+    }
+<# }); #>
+<# for (var k = 0; k < entity.references.length - 1; k++) { #>
+    get${entity.references[k].setname}(get${entity.references[k+1].setname});
+<# } #>
+
+    get${entity.references[entity.references.length - 1].setname}(function () { cb(null, references); });
+<# } #>
 }
 
 module.exports = {
@@ -37,6 +66,7 @@ module.exports = {
     update: update,
     remove: remove,
     getById: getById,
-    getAll: getAll
+    getAll: getAll,
+    getReferences: getReferences
 };
 

@@ -25,6 +25,9 @@ function completeEntity(entity, entities) {
     if (!entity)
         return;
         
+    if (entity.name && !entity.setname)
+        entity.setname = utils.pluralize(entity.name);
+        
     if (entity.name && !entity.title)
         entity.title = utils.capitalize(entity.name);
         
