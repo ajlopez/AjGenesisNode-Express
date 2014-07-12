@@ -26,10 +26,10 @@ function create(req, res) {
             return;
         }
         
-        var model = { title: 'New ${entity.title}' };
-        
-        for (var n in references)
-            model[n] = references[n];
+        var model = { 
+            title: 'New ${entity.title}',
+            references: references
+        };
             
         res.render('${entity.name}new', model);
     });

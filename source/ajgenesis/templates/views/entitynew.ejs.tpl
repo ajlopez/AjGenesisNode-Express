@@ -13,6 +13,22 @@
     </div>        
 <#
     }
+    else if (property.type == 'reference') { #>
+    <div class="form-group">
+        <label for="${property.name}">${property.title}</label>
+        <select class="form-control" name="${property.name}" id="${property.name}">
+            <option></option>
+<%
+    references.${property.reference.setname}.forEach(function (ref) {
+%>
+            <option value="<%= ref._id %>"><%= ref.name %></option>
+<%
+    });
+%>            
+        </select>
+    </div>
+<#
+    }
     else { #>
     <div class="form-group">
         <label for="${property.name}">${property.title}</label>
