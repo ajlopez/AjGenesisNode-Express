@@ -51,7 +51,20 @@ function edit(req, res) {
         if (err)
             error(err, req, res);
         else
-            res.render('${entity.name}edit', { title: 'Edit ${entity.title}', item: item });
+            services.getReferences(function (err, references) {
+                if (err) {
+                    error(err, req, res);
+                    return;
+                }
+                
+                var model = { 
+                    title: 'Edit ${entity.title}',
+                    item: item,
+                    references: references
+                };
+                    
+                res.render('${entity.name}edit', model);
+            });
     });
 }
 
