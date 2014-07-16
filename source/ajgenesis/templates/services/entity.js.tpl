@@ -27,6 +27,54 @@ function getAll(cb) {
     repository.findAll(cb);
 }
 
+function getEntityReferences(entity, cb) {
+    var references = { };
+    
+<#
+    var refs = [];
+    entity.properties.forEach(function (property) {
+        if (property.reference) {
+            refs.push(property);
+#>
+    function get${property.name}(next) {
+        if (!entity.${property.name}) {
+            next();
+            return;
+        }
+        
+        var service = require('./${property.reference.name}');
+        
+        service.getById(entity.${property.name}, function (err, data) {
+            if (err) {
+                cb(err, references);
+                return;
+            }
+            
+            references.${property.name} = data;
+            next();
+        });
+    }
+<#
+        }
+    });
+    
+    for (var k = 0; k < refs.length - 1; k++) { #>
+    get${refs[k].name}(get${refs[k + 1].name});
+<#
+    }
+    
+    if (refs.length) {
+#>
+    get${refs[refs.length - 1].name}(function () { cb(null, references); });
+<#
+    } else {
+#>
+    cb(null, references);
+<#
+    }
+#>
+}
+
 function getReferences(cb) {
     var references = { };
 <#
