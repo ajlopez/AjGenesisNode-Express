@@ -115,6 +115,7 @@ module.exports = {
     remove: remove,
     getById: getById,
     getAll: getAll,
-    getReferences: getReferences
+    getReferences: getReferences,
+    getEntityReferences: getEntityReferences
 };
 

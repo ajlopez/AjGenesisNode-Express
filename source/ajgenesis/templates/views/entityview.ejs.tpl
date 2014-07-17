@@ -11,7 +11,11 @@
 <# entity.properties.forEach(function (property) { #>
         <tr>
             <td>${property.title}</td>
+<# if (property.type == 'reference') { #>
+            <td><a href="/${property.reference.name}/<%= item.${property.name} %>"/><%= references.${property.name}.name %></a></td>
+<# } else { #>
             <td><%= item.${property.name} %></td>
+<# } #>           
         </tr>
 <# }); #>    
     </table>

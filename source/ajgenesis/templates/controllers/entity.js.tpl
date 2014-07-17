@@ -11,11 +11,22 @@ function index(req, res) {
 }
 
 function view(req, res) {
+    var model = { title: '${entity.title}' };
+    
     services.getById(req.params.id, function (err, item) {
         if (err)
             error(err, req, res);
-        else
-            res.render('${entity.name}view', { title: '${entity.title}', item: item });
+        else {
+            model.item = item;
+            services.getEntityReferences(item, function (err, refs) {
+                if (err)
+                    error(err, req, res);
+                else {
+                    model.references = refs;
+                    res.render('${entity.name}view', model);
+                }
+            });
+        }
     });
 }
 
