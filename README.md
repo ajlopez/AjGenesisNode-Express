@@ -85,6 +85,7 @@ npm test
 - 0.0.2: Published. Use of local `entity` module. Models in `ajgenesis/models`
 - 0.0.3: Published. Use the current directory as Express application instead of `build`
 - 0.0.4: Published. Generate code for Express 4.x
+- 0.0.5: Published. First references. Install entity, model modules instead of using node_modules
 
 ## References
 
