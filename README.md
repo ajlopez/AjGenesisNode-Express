@@ -31,6 +31,12 @@ And there is a subdirectory `ajgenesis` with:
 - `ajgenesis/templates`: templates to be used
 - `ajgenesis/libs`: additional modules used by tasks
 
+Install additional ajgenesis modules:
+```
+ajgenesis install entity
+ajgenesis install model
+```
+The modules code and templates are installed under `ajgenesis/modules` folder.
 
 Let add some entities and propeties:
 ```

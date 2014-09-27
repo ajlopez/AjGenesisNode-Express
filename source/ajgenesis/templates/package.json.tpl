@@ -16,7 +16,5 @@
     "mongodb": "1.4.5"
   },
   "devDependencies": {
-    "ajgenesisnode-entity": "0.0.5",
-    "ajgenesisnode-model": "0.0.2"
   }
 }
