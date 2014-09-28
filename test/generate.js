@@ -30,6 +30,12 @@ exports['generate'] = function (test) {
         test.ok(fs.existsSync('app.js'));
         test.ok(fs.existsSync('package.json'));
         
+        var pack = require(path.resolve('package.json'));
+        
+        test.ok(pack);
+        test.equal(pack.name, 'myproject');
+        test.equal(pack.version, '0.0.1');
+                
         //test.ok(fs.existsSync(path.join('views', 'index.ejs')));
         //test.ok(fs.existsSync(path.join('views', 'error.ejs')));
         test.ok(fs.existsSync(path.join('views', 'header.ejs')));

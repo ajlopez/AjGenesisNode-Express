@@ -18,11 +18,10 @@ function view(req, res) {
             error(err, req, res);
         else {
             model.item = item;
-            services.getEntityReferences(item, function (err, refs) {
+            services.getEntityReferences(item, function (err, item) {
                 if (err)
                     error(err, req, res);
                 else {
-                    model.references = refs;
                     res.render('${entity.name}view', model);
                 }
             });

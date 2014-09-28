@@ -20,10 +20,11 @@ module.exports = function (model, args, ajgenesis, cb) {
         if (model.project)
             projmodel = model.project;
         else
-            model.project = projmodel = { project: { name: dirname, version: '0.0.1'} };
+            projmodel = { project: { name: path.basename(dirname), version: '0.0.1'} };
         
         ajgenesis.saveModel(path.join(ajgenesis.getModelDirectory(dirname), 'project.json'), projmodel);
-
+        
+        model.project = projmodel.project;
         model.builddir = dirname;
         
         generatetask(model, [], ajgenesis, cb);

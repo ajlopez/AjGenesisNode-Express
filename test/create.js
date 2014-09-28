@@ -17,6 +17,12 @@ exports['create application'] = function (test) {
         test.ok(fs.existsSync(path.join(dirname, 'app.js')));
         test.ok(fs.existsSync(path.join(dirname, 'package.json')));
         
+        var pack = require(path.resolve(path.join(dirname, 'package.json')));
+        
+        test.ok(pack);
+        test.equal(pack.name, 'build');
+        test.equal(pack.version, '0.0.1');
+        
         test.ok(fs.existsSync(path.join(dirname, 'bin')));
         test.ok(fs.existsSync(path.join(dirname, 'bin', 'www')));
         
