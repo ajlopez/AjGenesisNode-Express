@@ -20,7 +20,7 @@ function Repository(db, name) {
                     if (err)
                         callback(err);
                     else
-                        callback(null, collection);
+                        callback(null, normalize(collection));
                 });
             }
         });
@@ -40,7 +40,7 @@ function Repository(db, name) {
                     if (err)
                         callback(err);
                     else
-                        callback(null, collection);
+                        callback(null, normalize(collection));
                 });
             }
         });
@@ -78,7 +78,12 @@ function Repository(db, name) {
             if (err)
                 callback(err);
             else
-                collection.findOne({ _id: collection.db.bson_serializer.ObjectID.createFromHexString(id) }, callback);
+                collection.findOne({ _id: collection.db.bson_serializer.ObjectID.createFromHexString(id) }, function (err, item) {
+                    if (err)
+                        callback(err, null);
+                    else
+                        callback(null, normalize(item));
+                });
         });
     };
     
@@ -91,6 +96,17 @@ function Repository(db, name) {
         });
     };
 };
+
+function normalize(item) {
+    if (Array.isArray(item))
+        item.forEach(function (it) { normalize(it); });
+    else if (item._id) {
+        item.id = item._id;
+        delete item._id;
+    }
+    
+    return item;
+}
 
 module.exports = {
     createRepository: function (db, name) { return new Repository(db, name); },

@@ -21,7 +21,7 @@
 <%
     references.${property.reference.setname}.forEach(function (ref) {
 %>
-            <option value="<%= ref._id %>"><%= ref.name %></option>
+            <option value="<%= ref.id %>"><%= ref.name %></option>
 <%
     });
 %>            

@@ -2,7 +2,7 @@
 
 <div class="row actions">
 <a class="btn btn-info btn-sm" href="/${entity.name}">${entity.settitle}</a>
-<a class="btn btn-info btn-sm" href="/${entity.name}/${entity._id}">View ${entity.title}</a>
+<a class="btn btn-info btn-sm" href="/${entity.name}/${entity.id}">View ${entity.title}</a>
 </div>
 
 <div class='row'>
@@ -23,7 +23,7 @@
 <%
     references.${property.reference.setname}.forEach(function (ref) {
 %>
-            <option value="<%= ref._id %>" <%= ref._id == item.${property.name} ? "selected" : "" %>><%= ref.name %></option>
+            <option value="<%= ref.id %>" <%= ref.id == item.${property.name}.id ? "selected" : "" %>><%= ref.name %></option>
 <%
     });
 %>            

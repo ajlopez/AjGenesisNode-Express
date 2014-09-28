@@ -28,8 +28,6 @@ function getAll(cb) {
 }
 
 function getEntityReferences(entity, cb) {
-    var references = { };
-    
 <#
     var refs = [];
     entity.properties.forEach(function (property) {
@@ -50,7 +48,11 @@ function getEntityReferences(entity, cb) {
                 return;
             }
             
-            references.${property.name} = data;
+            entity.${property.name} = {
+                id: data.id,
+                name: data.${property.reference.properties[0].name}
+            }
+            
             next();
         });
     }
@@ -65,11 +67,11 @@ function getEntityReferences(entity, cb) {
     
     if (refs.length) {
 #>
-    get${refs[refs.length - 1].name}(function () { cb(null, references); });
+    get${refs[refs.length - 1].name}(function () { cb(null, entity); });
 <#
     } else {
 #>
-    cb(null, references);
+    cb(null, entity);
 <#
     }
 #>
