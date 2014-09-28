@@ -25,6 +25,26 @@ function Repository(db, name) {
             }
         });
     };
+
+    this.find = function (query, projection, callback) {
+        if (!callback) {
+            callback = projection;
+            projection = null;
+        }
+        
+        getCollection(function (err, collection) {
+            if (err)
+                callback(err);
+            else {
+                collection.find(query).toArray(function (err, collection) {
+                    if (err)
+                        callback(err);
+                    else
+                        callback(null, collection);
+                });
+            }
+        });
+    };
     
     this.insert = function (item, callback) {
         getCollection(function (err, collection) {
@@ -40,7 +60,7 @@ function Repository(db, name) {
             if (err)
                 callback(err);
             else
-                collection.update({ _id: collection.db.bson_serializer.ObjectID.createFromHexString(id) }, item, callback);
+                collection.update({ _id: collection.db.bson_serializer.ObjectID.createFromHexString(id) }, { $set: item }, callback);
         });
     };
     
