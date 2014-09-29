@@ -31,8 +31,11 @@ exports['generate'] = function (test) {
             test.ok(fs.existsSync('app.js'));
             test.ok(fs.existsSync('package.json'));
             
-            var pack = require(path.resolve('package.json'));
+            var packjson = fs.readFileSync('package.json').toString();
+            var pack;
             
+            eval("pack = " + packjson);
+
             test.ok(pack);
             test.equal(pack.name, 'myproject');
             test.equal(pack.version, '0.0.1');
