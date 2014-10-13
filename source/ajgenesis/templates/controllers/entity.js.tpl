@@ -29,6 +29,20 @@ function view(req, res) {
         model.item = item;
         services.getEntityReferences(item, next);
     })
+<#  entity.referenced.forEach(function (ref) { #>
+    .then(function (item, next) {
+        var service = require('../services/${ref.entity.name}');
+        service.getBy${utils.capitalize(ref.name)}(req.params.id, next);
+    })
+    .map(function (item, next) {
+        var service = require('../services/${ref.entity.name}');
+        service.getEntityReferences(item, next);
+    })
+    .then(function (children, next) {
+        model.item.${ref.inverse.name}_${ref.name} = children;
+        next(null, model.item);
+    })
+<#  }); #>
     .then(function (item, next) {
         res.render('${entity.name}view', model);
     })

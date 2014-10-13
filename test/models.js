@@ -53,6 +53,13 @@ exports['Complete model with entities and properties'] = function (test) {
         test.ok(entity.references);
         test.ok(Array.isArray(entity.references));
         test.equal(entity.references.length, 0);
+        test.ok(entity.referenced);
+        test.ok(Array.isArray(entity.referenced));
+        test.equal(entity.referenced.length, 0);
+        
+        entity.properties.forEach(function (property) {
+            test.strictEqual(property.entity, entity);
+        });
     });
 };
 
