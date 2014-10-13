@@ -26,5 +26,6 @@
                 { "name": "notes", "type": "text" }
             ]
         }
-    ]
+    ],
+    "api": true
 }
