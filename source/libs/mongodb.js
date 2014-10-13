@@ -16,7 +16,12 @@ function Repository(db, name) {
             if (err)
                 callback(err);
             else
-                collection.find().toArray(callback);
+                collection.find().toArray(function (err, items) {
+                    if (err)
+                        callback(err, null);
+                    else
+                        callback(null, normalize(items));
+                });
         });
     };
     
@@ -30,7 +35,12 @@ function Repository(db, name) {
             if (err)
                 callback(err);
             else
-                collection.find(query).toArray(callback);
+                collection.find(query).toArray(function (err, items) {
+                    if (err)
+                        callback(err, null);
+                    else
+                        callback(null, normalize(items));
+                });
         });
     };
     
@@ -85,7 +95,12 @@ function Repository(db, name) {
             }
             
             try {
-                collection.findOne({ _id: collection.db.bson_serializer.ObjectID.createFromHexString(id) }, callback);
+                collection.findOne({ _id: collection.db.bson_serializer.ObjectID.createFromHexString(id) }, function (err, item) {
+                    if (err)
+                        callback(err, null);
+                    else
+                        callback(null, normalize(item));
+                });
             }
             catch (err) {
                 callback(err, null);
@@ -104,9 +119,26 @@ function Repository(db, name) {
     };
 };
 
+function normalize(item) {
+    if (Array.isArray(item))
+        item.forEach(function (it) { normalize(it); });
+    else if (item._id) {
+        item.id = item._id;
+        delete item._id;
+    }
+    
+    return item;
+}
+
 module.exports = {
     createRepository: function (db, name) { return new Repository(db, name); },
     openDatabase: function (dbname, host, port, username, password, cb) {
+        if (typeof username == 'function') {
+            cb = username;
+            username = null;
+            password = null;
+        }
+        
         if (!cb)
             cb = function () { };
 
