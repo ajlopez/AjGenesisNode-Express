@@ -42,6 +42,11 @@ function generate(model, args, ajgenesis, cb) {
         ajgenesis.fileTransform(path.join(__dirname, '..', 'templates', 'views', 'entityview.ejs.tpl'), path.join(viewsdir, entity.name + 'view.ejs'), model);
         ajgenesis.fileTransform(path.join(__dirname, '..', 'templates', 'views', 'entitynew.ejs.tpl'), path.join(viewsdir, entity.name + 'new.ejs'), model);
         ajgenesis.fileTransform(path.join(__dirname, '..', 'templates', 'views', 'entityedit.ejs.tpl'), path.join(viewsdir, entity.name + 'edit.ejs'), model);
+        
+        if (model.api) {
+            ajgenesis.fileTransform(path.join(__dirname, '..', 'templates', 'routes', 'entityapi.js.tpl'), path.join(routesdir, entity.name + 'api.js'), model);
+            ajgenesis.fileTransform(path.join(__dirname, '..', 'templates', 'controllers', 'entityapi.js.tpl'), path.join(controllersdir, entity.name + 'api.js'), model);
+        }
 
         delete model.entity;
     });
