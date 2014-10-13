@@ -17,6 +17,7 @@ exports['generate'] = function (test) {
     test.ok(model.entities);
     test.ok(Array.isArray(model.entities));
     test.equal(model.entities.length, 2);
+    test.ok(model.api);
     
     if (fs.existsSync('build') && !fs.existsSync(path.join('build', 'node_modules')))
         removeDirSync('build');

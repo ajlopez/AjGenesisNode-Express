@@ -7,6 +7,7 @@ exports['Complete model'] = function (test) {
     models.completeModel(model);
     
     test.equal(model.project.title, 'Project');
+    test.strictEqual(model.api, false);
 };
 
 exports['Complete model with entities and properties'] = function (test) {

@@ -63,6 +63,9 @@ function completeModel(model) {
         model.entities.forEach(function (entity) {
             completeEntity(entity, model.entities);
         });
+        
+    if (model.api == undefined)
+        model.api = false;
 }
 
 module.exports = {

@@ -7,7 +7,12 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 
 var routes = require('./routes/index');
-<#  entities.forEach(function(entity) { #>var ${entity.name} = require('./routes/${entity.name}');
+
+<#  entities.forEach(function(entity) { #>
+var ${entity.name} = require('./routes/${entity.name}');
+<#  }); #>
+<#  if (api) entities.forEach(function(entity) { #>
+var ${entity.name}api = require('./routes/${entity.name}api');
 <#  }); #>
 
 var app = express();
@@ -24,8 +29,12 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', routes);
+
 <#  entities.forEach(function(entity) { #>
 app.use('/${entity.name}', ${entity.name});
+<#  }); #>
+<#  if (api) entities.forEach(function(entity) { #>
+app.use('/api/${entity.name}', ${entity.name}api);
 <#  }); #>
 
 /// catch 404 and forward to error handler
