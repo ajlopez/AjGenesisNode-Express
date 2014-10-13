@@ -1,4 +1,3 @@
-
 var mongodb = require('../libs/mongodb');
 
 var repository;
@@ -77,6 +76,15 @@ function getEntityReferences(entity, cb) {
 #>
 }
 
+<#
+    refs.forEach(function (ref) { #>
+function getBy${utils.capitalize(ref.name)}(id, cb) {
+    repository.find({ ${ref.name}: id }, cb);
+}    
+<#    
+    });
+#>
+
 function getReferences(cb) {
     var references = { };
 <#
@@ -117,6 +125,9 @@ module.exports = {
     remove: remove,
     getById: getById,
     getAll: getAll,
+<#  refs.forEach(function (ref) { #>
+    getBy${utils.capitalize(ref.name)}: getBy${utils.capitalize(ref.name)},
+<#  }); #>
     getReferences: getReferences,
     getEntityReferences: getEntityReferences
 };

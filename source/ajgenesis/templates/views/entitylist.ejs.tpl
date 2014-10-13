@@ -16,7 +16,7 @@
             <td><a href="/${entity.name}/<%= item.id %>">View</a></td>
         <#  entity.properties.forEach(function(property) { 
             if (property.type == 'reference') { #>
-            <td><%= item.${property.name}.name %></td>
+            <td><a href="/${property.reference.name}/<%= item.${property.name}.id %>"/><%= item.${property.name}.name %></a></td>
             <# }
             else { #>
             <td><%= item.${property.name} %></td>

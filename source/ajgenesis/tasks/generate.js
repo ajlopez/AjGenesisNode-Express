@@ -1,12 +1,16 @@
 
-var path = require('path'),
-    models = require('../libs/models');
+var path = require('path');
+var models = require('../libs/models');
+var utils = require('../libs/utils');
 
 function generate(model, args, ajgenesis, cb) {
     models.completeModel(model);
     
     if (!model.builddir)
         model.builddir = '.';
+        
+    if (!model.utils)
+        model.utils = utils;
         
     var builddir = model.builddir;
     

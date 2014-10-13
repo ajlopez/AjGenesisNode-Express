@@ -37,12 +37,31 @@ function completeEntity(entity, entities) {
     if (!entity.references)
         entity.references = [];
         
+    if (!entity.referenced)
+        entity.referenced = [];
+        
     if (entity.properties)
         entity.properties.forEach(function (property) {
             completeProperty(property, entities);
             
-            if (property.reference && property.reference.name && entity.references.indexOf(property.reference) < 0)
-                entity.references.push(property.reference);
+            if (property.reference && property.reference.name) {
+                if (entity.references.indexOf(property.reference) < 0)
+                    entity.references.push(property.reference);
+                
+                if (!property.reference.referenced)
+                    property.reference.referenced = [];
+                    
+                property.reference.referenced.push(property);
+                
+                if (!property.inverse)
+                    property.inverse = { };
+                    
+                if (!property.inverse.name)
+                    property.inverse.name = entity.setname;
+                    
+                if (!property.inverse.title)
+                    property.inverse.title = entity.settitle;
+            }
         });
 }
 
