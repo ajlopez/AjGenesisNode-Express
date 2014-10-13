@@ -14,8 +14,15 @@
     <% items.forEach(function (item) { %>
         <tr>
             <td><a href="/${entity.name}/<%= item.id %>">View</a></td>
-    <#  entity.properties.forEach(function(property) { #>
-            <td><%= item.${property.name} %></td><# }); #>
+        <#  entity.properties.forEach(function(property) { 
+            if (property.type == 'reference') { #>
+            <td><%= item.${property.name}.name %></td>
+            <# }
+            else { #>
+            <td><%= item.${property.name} %></td>
+        <# 
+            }
+            }); #>
         </tr>
     <% }); %>
     </table>

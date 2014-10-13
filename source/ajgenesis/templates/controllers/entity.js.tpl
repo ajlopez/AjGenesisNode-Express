@@ -1,32 +1,41 @@
 
 var services = require('../services/${entity.name}');
+var async = require('simpleasync');
 
 function index(req, res) {
-    services.getAll(function (err, items) {
-        if (err)
-            error(err, req, res);
-        else
-            res.render('${entity.name}list', { title: '${entity.settitle}', items: items });
-    });
+    var model = { title: '${entity.settitle}' };
+    
+    async()
+    .then(function (data, next) { services.getAll(next); })
+    .map(function (item, next) {
+        services.getEntityReferences(item, next);
+    })
+    .then(function (items, next) {
+        model.items = items;
+        res.render('${entity.name}list', model);
+    })
+    .fail(function (err) {
+        error(err, req, res);
+    })
+    .run();
 }
 
 function view(req, res) {
     var model = { title: '${entity.title}' };
     
-    services.getById(req.params.id, function (err, item) {
-        if (err)
-            error(err, req, res);
-        else {
-            model.item = item;
-            services.getEntityReferences(item, function (err, item) {
-                if (err)
-                    error(err, req, res);
-                else {
-                    res.render('${entity.name}view', model);
-                }
-            });
-        }
-    });
+    async()
+    .then(function (data, next) { services.getById(req.params.id, next); })
+    .then(function (item, next) {
+        model.item = item;
+        services.getEntityReferences(item, next);
+    })
+    .then(function (item, next) {
+        res.render('${entity.name}view', model);
+    })
+    .fail(function (err) {
+        error(err, req, res);
+    })
+    .run();
 }
 
 function create(req, res) {
@@ -106,6 +115,10 @@ function getEntity(req) {
 <# }); #>    
 
     return entity;
+}
+
+function error(err, req, res) {
+    res.render('error', { title: 'Error', error: err });
 }
 
 module.exports = {
