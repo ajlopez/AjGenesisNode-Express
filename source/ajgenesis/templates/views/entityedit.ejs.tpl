@@ -2,7 +2,7 @@
 
 <div class="row actions">
 <a class="btn btn-info btn-sm" href="/${entity.name}">${entity.settitle}</a>
-<a class="btn btn-info btn-sm" href="/${entity.name}/${entity.id}">View ${entity.title}</a>
+<a class="btn btn-info btn-sm" href="/${entity.name}/<%= item.id %>">View ${entity.title}</a>
 </div>
 
 <div class='row'>
