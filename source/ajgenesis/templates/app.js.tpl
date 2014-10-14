@@ -34,7 +34,7 @@ app.use('/', routes);
 app.use('/${entity.name}', ${entity.name});
 <#  }); #>
 <#  if (api) entities.forEach(function(entity) { #>
-app.use('/api/${entity.name}', ${entity.name}api);
+app.use('/api/${entity.setname}', ${entity.name}api);
 <#  }); #>
 
 /// catch 404 and forward to error handler
