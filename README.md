@@ -48,7 +48,7 @@ ajgenesis entity:addproperty supplier name
 ajgenesis entity:addproperty supplier address
 ```
 
-`.json` files are added to `ajgenesis/models` folder. You can edit those file manually, instead
+Entity `.json` files are added to `ajgenesis/models/entities` folder. You can edit those file manually, instead
 of relaying in auxiliary `entity` module.
 
 Generate the web site:
@@ -86,6 +86,7 @@ npm test
 - 0.0.3: Published. Use the current directory as Express application instead of `build`
 - 0.0.4: Published. Generate code for Express 4.x
 - 0.0.5: Published. First references. Install entity, model modules instead of using node_modules
+- 0.0.6: Published. Using entities folder in model
 
 ## References
 
