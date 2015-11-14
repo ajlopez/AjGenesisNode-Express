@@ -81,12 +81,17 @@ function completeModel(model) {
         model.project.title = utils.capitalize(model.project.name);
         
     if (!model.entities)
-        model.entities = [];
+        model.entities = {};
+        
+    if (!model.entities.forEach)
+        model.entities.forEach = function (fn) {
+            for (var n in this)
+                fn(this[n]);
+        }
   
-    if (Array.isArray(model.entities))
-        model.entities.forEach(function (entity) {
-            completeEntity(entity, model.entities);
-        });
+    model.entities.forEach(function (entity) {
+        completeEntity(entity, model.entities);
+    });
         
     if (model.api == undefined)
         model.api = false;

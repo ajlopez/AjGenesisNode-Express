@@ -15,8 +15,6 @@ exports['generate'] = function (test) {
     var model = ajgenesis.loadModel();
     
     test.ok(model.entities);
-    test.ok(Array.isArray(model.entities));
-    test.equal(model.entities.length, 2);
     test.ok(model.api);
     
     if (fs.existsSync('build') && !fs.existsSync(path.join('build', 'node_modules')))
@@ -97,8 +95,6 @@ exports['generate in directory'] = function (test) {
     var model = ajgenesis.loadModel();
     
     test.ok(model.entities);
-    test.ok(Array.isArray(model.entities));
-    test.equal(model.entities.length, 2);
     
     if (fs.existsSync('build') && !fs.existsSync(path.join('build', 'node_modules')))
         removeDirSync('build');

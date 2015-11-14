@@ -12,7 +12,8 @@ exports['create application with model'] = function (test) {
     var model = ajgenesis.loadModel(path.join('test', 'models', 'myapp'));
     
     test.ok(model.entities);
-    test.ok(model.entities.length);
+    test.ok(model.entities.department);
+    test.ok(model.entities.employee);
     
     createtask(model, [dirname], ajgenesis, function (err, result) {
         test.equal(err, null);

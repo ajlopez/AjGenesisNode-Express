@@ -1,0 +1,8 @@
+{
+    "name": "customer",
+    "properties": [
+        { "name": "name" },
+        { "name": "address" },
+        { "name": "notes", "type": "text" }
+    ]
+}

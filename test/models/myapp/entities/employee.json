@@ -1,0 +1,1 @@
+{    "name": "employee",    "properties": [        {            "name": "name"        },        {            "name": "department",            "reference": "department"        }    ]}
