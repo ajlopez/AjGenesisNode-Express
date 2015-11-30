@@ -86,7 +86,8 @@ function completeModel(model) {
     if (!model.entities.forEach)
         model.entities.forEach = function (fn) {
             for (var n in this)
-                fn(this[n]);
+                if (typeof this[n] === 'object')
+                    fn(this[n]);
         }
   
     model.entities.forEach(function (entity) {
