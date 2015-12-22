@@ -7,7 +7,7 @@ var createtask = require('../create'),
 exports['create application with model'] = function (test) {
     test.async();
     
-    ajgenesis.createDirectory('test', 'apps');
+    ajgenesis.fs.createDirectory('test', 'apps');
     var dirname = path.join('test', 'apps', 'myapp');
     var model = ajgenesis.loadModel(path.join('test', 'models', 'myapp'));
     

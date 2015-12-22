@@ -20,12 +20,12 @@ function generate(model, args, ajgenesis, cb) {
     var viewsdir = path.join(builddir, 'views');
     var bindir = path.join(builddir, 'bin');
     
-    ajgenesis.createDirectory(builddir);
-    ajgenesis.createDirectory(bindir);
-    ajgenesis.createDirectory(routesdir);
-    ajgenesis.createDirectory(controllersdir);
-    ajgenesis.createDirectory(servicesdir);
-    ajgenesis.createDirectory(viewsdir);
+    ajgenesis.fs.createDirectory(builddir);
+    ajgenesis.fs.createDirectory(bindir);
+    ajgenesis.fs.createDirectory(routesdir);
+    ajgenesis.fs.createDirectory(controllersdir);
+    ajgenesis.fs.createDirectory(servicesdir);
+    ajgenesis.fs.createDirectory(viewsdir);
 
     ajgenesis.fileTransform(path.join(__dirname, '..', 'templates', 'app.js.tpl'), path.join(builddir, 'app.js'), model);
     ajgenesis.fileTransform(path.join(__dirname, '..', 'templates', 'package.json.tpl'), path.join(builddir, 'package.json'), model);

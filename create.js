@@ -9,7 +9,7 @@ module.exports = function (model, args, ajgenesis, cb) {
     
     model = model || { };
     
-    ajgenesis.copyDirectory(source, dirname, function (err, result) {
+    ajgenesis.fs.copyDirectory(source, dirname, function (err, result) {
         if (err) {
             cb(err, null);
             return;
