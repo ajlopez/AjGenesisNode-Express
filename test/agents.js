@@ -1,5 +1,5 @@
 
-var agents = require('../source/ajgenesis/libs/agents'),
+var agents = require('../ajgenesis/module/libs/agents'),
     path = require('path');
 
 exports['load agents'] = function (test) {
