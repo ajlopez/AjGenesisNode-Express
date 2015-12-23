@@ -1,5 +1,5 @@
 
-var models = require('../source/ajgenesis/libs/models');
+var models = require('../ajgenesis/module/libs/models');
 
 exports['Complete model'] = function (test) {
     var model = { project: { name: 'project' } };
