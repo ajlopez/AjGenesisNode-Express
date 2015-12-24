@@ -1,5 +1,5 @@
 
-var utils = require('../source/ajgenesis/libs/utils');
+var utils = require('../ajgenesis/module/libs/utils');
 
 var entities = [
     { name: 'customer', title: 'Customer' },

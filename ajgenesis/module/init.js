@@ -11,6 +11,11 @@ function init(model, args, ajgenesis, cb) {
         
     if (!model.utils)
         model.utils = utils;
+    
+    ajgenesis.createModelDirectory(model.builddir);
+    
+    if (!ajgenesis.fs.exists(path.join(ajgenesis.getModelDirectory(model.builddir), 'project.json')))
+        ajgenesis.saveModel('project', model.project, model.builddir);
 
     ajgenesis.fs.copyDirectory(path.join(__dirname, 'source'), model.builddir, { noreplace: true }, cb);
 }

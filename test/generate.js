@@ -66,6 +66,10 @@ exports['generate'] = function (test) {
         test.ok(fs.existsSync(path.join('views', 'suppliernew.ejs')));
         test.ok(fs.existsSync(path.join('views', 'supplieredit.ejs')));
 
+        test.ok(fs.existsSync(path.join('ajgenesis')));
+        test.ok(fs.existsSync(path.join('ajgenesis', 'models')));
+        test.ok(fs.existsSync(path.join('ajgenesis', 'models', 'project.json')));
+        
         test.ok(fs.existsSync(path.join('libs')));
         test.ok(fs.existsSync(path.join('libs', 'mongodb.js')));
         
