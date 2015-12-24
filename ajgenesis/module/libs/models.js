@@ -75,11 +75,13 @@ function completeModel(model) {
     if (!model)
         return;
         
+    var builddir = model.builddir || '.';
+        
     if (!model.project)
         model.project = {};
     
     if (model.project && !model.project.name)
-        model.project.name = path.basename('.');
+        model.project.name = path.basename(path.resolve(builddir));
         
     if (model.project && model.project.name && !model.project.title)
         model.project.title = utils.capitalize(model.project.name);
