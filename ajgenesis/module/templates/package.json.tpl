@@ -14,7 +14,7 @@
     "serve-favicon": "~2.3.0",
     "ejs": "^2.3.4",
     "mongodb": "^2.0.49",
-    "simpleasync": "0.0.6"
+    "simpleasync": "0.0.7"
   },
   "devDependencies": {
   }

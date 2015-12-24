@@ -2,7 +2,7 @@
 var services = require('../services/${entity.name}');
 var async = require('simpleasync');
 
-function index(req, res) {
+function list(req, res) {
     var model = { title: '${entity.settitle}' };
     
     async()
@@ -125,7 +125,8 @@ function getEntity(req) {
     var entity = { };
     
 <# entity.properties.forEach(function (property) { #>
-    entity.${property.name} = req.param('${property.name}');
+    if (req.body.${property.name} != null)
+        entity.${property.name} = req.body.${property.name};
 <# }); #>    
 
     return entity;
@@ -136,7 +137,7 @@ function error(err, req, res) {
 }
 
 module.exports = {
-    index: index,
+    list: list,
     view: view,
     edit: edit,
     update: update,
