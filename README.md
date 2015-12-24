@@ -91,6 +91,7 @@ npm test
 - 0.0.4: Published. Generate code for Express 4.x
 - 0.0.5: Published. First references. Install entity, model modules instead of using node_modules
 - 0.0.6: Published. Using entities folder in model
+- 0.0.7: Published. New folder structure, model and entity modules, init verb
 
 ## References
 
