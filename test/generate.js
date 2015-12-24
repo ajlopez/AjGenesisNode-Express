@@ -1,6 +1,5 @@
 
-var generatetask = require('../source/ajgenesis/tasks/generate'),
-    createtask = require('../create'),
+var generatetask = require('../ajgenesis/module/generate'),
     path = require('path'),
     fs = require('fs'),
     ajgenesis = require('ajgenesis');
@@ -19,8 +18,8 @@ exports['generate'] = function (test) {
     
     if (fs.existsSync('build') && !fs.existsSync(path.join('build', 'node_modules')))
         removeDirSync('build');
-        
-    createtask(null, ['build'], ajgenesis, function (err, result) {
+    
+    ajgenesis.modules.install('..', 'build', function (err, result) {
         process.chdir('build');
         
         generatetask(model, [], ajgenesis, function (err, result) {
@@ -99,7 +98,7 @@ exports['generate in directory'] = function (test) {
     if (fs.existsSync('build') && !fs.existsSync(path.join('build', 'node_modules')))
         removeDirSync('build');
         
-    createtask(null, ['build'], ajgenesis, function (err, result) {
+    ajgenesis.modules.install('..', 'build', function (err, result) {
         model.builddir = 'build';
             
         generatetask(model, [], ajgenesis, function (err, result) {
