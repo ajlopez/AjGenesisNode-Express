@@ -1,0 +1,1 @@
+<#var nprops = Object.keys(properties).length;var nprop = 0;#>{<# for (var n in properties) { #>    "${n}": "${properties[n]}"<# nprop++; if (nprop < nprops) writer.write(','); } #>}
