@@ -1,8 +1,10 @@
 
-var generatetask = require('../ajgenesis/module/generate'),
-    path = require('path'),
-    fs = require('fs'),
-    ajgenesis = require('ajgenesis');
+var generatetask = require('../ajgenesis/module/generate');
+var inittask = require('../ajgenesis/module/init');
+var path = require('path');
+var fs = require('fs');
+var ajgenesis = require('ajgenesis');
+var async = require('simpleasync');
 
 exports['generate'] = function (test) {
     test.async();
@@ -19,135 +21,79 @@ exports['generate'] = function (test) {
     if (fs.existsSync('build') && !fs.existsSync(path.join('build', 'node_modules')))
         removeDirSync('build');
     
-    ajgenesis.modules.install('..', 'build', function (err, result) {
+    model.builddir = 'build';
+    
+    async()
+    .then(function (data, next) {
+        ajgenesis.modules.install('..', 'build', next);
+    })
+    .then(function (data, next) {
+        inittask(model, [], ajgenesis, next);
+    })
+    .then(function (data, next) {
+        generatetask(model, [], ajgenesis, next);
+    })
+    .then(function (data, next) {
+        test.equal(data, null);
+
         process.chdir('build');
         
-        generatetask(model, [], ajgenesis, function (err, result) {
-            test.equal(err, null);
-            test.equal(result, null);
-
-            test.ok(fs.existsSync('app.js'));
-            test.ok(fs.existsSync('package.json'));
-            
-            var packjson = fs.readFileSync('package.json').toString();
-            var pack;
-            
-            eval("pack = " + packjson);
-
-            test.ok(pack);
-            test.equal(pack.name, 'myproject');
-            test.equal(pack.version, '0.0.1');
-                    
-            //test.ok(fs.existsSync(path.join('views', 'index.ejs')));
-            //test.ok(fs.existsSync(path.join('views', 'error.ejs')));
-            test.ok(fs.existsSync(path.join('views', 'header.ejs')));
-            test.ok(fs.existsSync(path.join('views', 'headerjumbo.ejs')));
-            test.ok(fs.existsSync(path.join('views', 'footer.ejs')));
-
-            test.ok(fs.existsSync(path.join('views', 'customerlist.ejs')));
-            test.ok(fs.existsSync(path.join('views', 'customerview.ejs')));
-            test.ok(fs.existsSync(path.join('views', 'customernew.ejs')));
-            test.ok(fs.existsSync(path.join('views', 'customeredit.ejs')));
-
-            test.ok(fs.existsSync(path.join('views', 'supplierlist.ejs')));
-            test.ok(fs.existsSync(path.join('views', 'supplierview.ejs')));
-            test.ok(fs.existsSync(path.join('views', 'suppliernew.ejs')));
-            test.ok(fs.existsSync(path.join('views', 'supplieredit.ejs')));
-
-            test.ok(fs.existsSync(path.join('libs')));
-            test.ok(fs.existsSync(path.join('libs', 'mongodb.js')));
-            
-            test.ok(fs.existsSync(path.join('routes')));
-            test.ok(fs.existsSync(path.join('routes', 'index.js')));
-            test.ok(fs.existsSync(path.join('routes', 'customer.js')));
-            test.ok(fs.existsSync(path.join('routes', 'supplier.js')));
-            test.ok(fs.existsSync(path.join('routes', 'customerapi.js')));
-            test.ok(fs.existsSync(path.join('routes', 'supplierapi.js')));
-
-            test.ok(fs.existsSync(path.join('controllers')));
-            test.ok(fs.existsSync(path.join('controllers', 'index.js')));
-            test.ok(fs.existsSync(path.join('controllers', 'customer.js')));
-            test.ok(fs.existsSync(path.join('controllers', 'supplier.js')));
-            test.ok(fs.existsSync(path.join('controllers', 'customerapi.js')));
-            test.ok(fs.existsSync(path.join('controllers', 'supplierapi.js')));
-            
-            test.ok(fs.existsSync(path.join('services')));
-            test.ok(fs.existsSync(path.join('services', 'customer.js')));
-            test.ok(fs.existsSync(path.join('services', 'supplier.js')));
-
-            test.ok(fs.existsSync(path.join('bin', 'www')));
-            
-            process.chdir(cwd);
-            
-            test.done();
-        });    
-    });
-}
-
-exports['generate in directory'] = function (test) {
-    test.async();
-    
-    var cwd = process.cwd();
-    
-    process.chdir('test');
-    
-    var model = ajgenesis.loadModel();
-    
-    test.ok(model.entities);
-    
-    if (fs.existsSync('build') && !fs.existsSync(path.join('build', 'node_modules')))
-        removeDirSync('build');
+        test.ok(fs.existsSync('app.js'));
+        test.ok(fs.existsSync('package.json'));
         
-    ajgenesis.modules.install('..', 'build', function (err, result) {
-        model.builddir = 'build';
-            
-        generatetask(model, [], ajgenesis, function (err, result) {
-            test.equal(err, null);
-            test.equal(result, null);
+        var packjson = fs.readFileSync('package.json').toString();
+        var pack;
+        
+        eval("pack = " + packjson);
 
-            test.ok(fs.existsSync(path.join('build', 'app.js')));
-            test.ok(fs.existsSync(path.join('build', 'package.json')));
-            
-            //test.ok(fs.existsSync(path.join('views', 'index.ejs')));
-            //test.ok(fs.existsSync(path.join('views', 'error.ejs')));
-            test.ok(fs.existsSync(path.join('build', 'views', 'header.ejs')));
-            test.ok(fs.existsSync(path.join('build', 'views', 'headerjumbo.ejs')));
-            test.ok(fs.existsSync(path.join('build', 'views', 'footer.ejs')));
+        test.ok(pack);
+        test.equal(pack.name, 'myproject');
+        test.equal(pack.version, '0.0.1');
+                
+        //test.ok(fs.existsSync(path.join('views', 'index.ejs')));
+        //test.ok(fs.existsSync(path.join('views', 'error.ejs')));
+        test.ok(fs.existsSync(path.join('views', 'header.ejs')));
+        test.ok(fs.existsSync(path.join('views', 'headerjumbo.ejs')));
+        test.ok(fs.existsSync(path.join('views', 'footer.ejs')));
 
-            test.ok(fs.existsSync(path.join('build', 'views', 'customerlist.ejs')));
-            test.ok(fs.existsSync(path.join('build', 'views', 'customerview.ejs')));
-            test.ok(fs.existsSync(path.join('build', 'views', 'customernew.ejs')));
-            test.ok(fs.existsSync(path.join('build', 'views', 'customeredit.ejs')));
+        test.ok(fs.existsSync(path.join('views', 'customerlist.ejs')));
+        test.ok(fs.existsSync(path.join('views', 'customerview.ejs')));
+        test.ok(fs.existsSync(path.join('views', 'customernew.ejs')));
+        test.ok(fs.existsSync(path.join('views', 'customeredit.ejs')));
 
-            test.ok(fs.existsSync(path.join('build', 'views', 'supplierlist.ejs')));
-            test.ok(fs.existsSync(path.join('build', 'views', 'supplierview.ejs')));
-            test.ok(fs.existsSync(path.join('build', 'views', 'suppliernew.ejs')));
-            test.ok(fs.existsSync(path.join('build', 'views', 'supplieredit.ejs')));
+        test.ok(fs.existsSync(path.join('views', 'supplierlist.ejs')));
+        test.ok(fs.existsSync(path.join('views', 'supplierview.ejs')));
+        test.ok(fs.existsSync(path.join('views', 'suppliernew.ejs')));
+        test.ok(fs.existsSync(path.join('views', 'supplieredit.ejs')));
 
-            test.ok(fs.existsSync(path.join('build', 'libs')));
-            test.ok(fs.existsSync(path.join('build', 'libs', 'mongodb.js')));
-            
-            test.ok(fs.existsSync(path.join('build', 'routes')));
-            test.ok(fs.existsSync(path.join('build', 'routes', 'index.js')));
-            test.ok(fs.existsSync(path.join('build', 'routes', 'customer.js')));
-            test.ok(fs.existsSync(path.join('build', 'routes', 'supplier.js')));
+        test.ok(fs.existsSync(path.join('libs')));
+        test.ok(fs.existsSync(path.join('libs', 'mongodb.js')));
+        
+        test.ok(fs.existsSync(path.join('routes')));
+        test.ok(fs.existsSync(path.join('routes', 'index.js')));
+        test.ok(fs.existsSync(path.join('routes', 'customer.js')));
+        test.ok(fs.existsSync(path.join('routes', 'supplier.js')));
+        test.ok(fs.existsSync(path.join('routes', 'customerapi.js')));
+        test.ok(fs.existsSync(path.join('routes', 'supplierapi.js')));
 
-            test.ok(fs.existsSync(path.join('build', 'controllers')));
-            test.ok(fs.existsSync(path.join('build', 'controllers', 'index.js')));
-            test.ok(fs.existsSync(path.join('build', 'controllers', 'customer.js')));
-            test.ok(fs.existsSync(path.join('build', 'controllers', 'supplier.js')));
-            
-            test.ok(fs.existsSync(path.join('build', 'services')));
-            test.ok(fs.existsSync(path.join('build', 'services', 'customer.js')));
-            test.ok(fs.existsSync(path.join('build', 'services', 'supplier.js')));
+        test.ok(fs.existsSync(path.join('controllers')));
+        test.ok(fs.existsSync(path.join('controllers', 'index.js')));
+        test.ok(fs.existsSync(path.join('controllers', 'customer.js')));
+        test.ok(fs.existsSync(path.join('controllers', 'supplier.js')));
+        test.ok(fs.existsSync(path.join('controllers', 'customerapi.js')));
+        test.ok(fs.existsSync(path.join('controllers', 'supplierapi.js')));
+        
+        test.ok(fs.existsSync(path.join('services')));
+        test.ok(fs.existsSync(path.join('services', 'customer.js')));
+        test.ok(fs.existsSync(path.join('services', 'supplier.js')));
 
-            test.ok(fs.existsSync(path.join('build', 'bin', 'www')));
-            
-            process.chdir(cwd);
-            
-            test.done();
-        });
-    });
+        test.ok(fs.existsSync(path.join('bin', 'www')));
+        
+        process.chdir(cwd);
+        
+        test.done();
+    })
+    .run();
 }
 
 function removeDirSync(dirname) {

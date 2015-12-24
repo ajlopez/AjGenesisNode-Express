@@ -1,17 +1,29 @@
-{ "name": "ajgenesisnode-express"
-, "description": "AjGenesis for Node, Express tasks and templates"
-, "keywords": [ "codegeneration", "nodejs", "ajgenesis", "express", "mongodb" ]
-, "version": "0.0.6"
-, "author": "Angel 'Java' Lopez <webmaster@ajlopez.com> (http://www.ajlopez.com)"
-, "repository": { "type": "git", "url": "git://github.com/ajlopez/AjGenesisNode-Express.git" }
-, "main": "./index.js"
-, "engines": { "node": ">= 0.10.0" }
-, "scripts": {
+{
+  "name": "ajgenesisnode-express",
+  "description": "AjGenesis for Node, Express tasks and templates",
+  "keywords": [
+    "codegeneration",
+    "nodejs",
+    "ajgenesis",
+    "express",
+    "mongodb"
+  ],
+  "version": "0.0.6",
+  "author": "Angel 'Java' Lopez <webmaster@ajlopez.com> (http://www.ajlopez.com)",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/ajlopez/AjGenesisNode-Express.git"
+  },
+  "main": "./index.js",
+  "engines": {
+    "node": ">= 0.10.0"
+  },
+  "scripts": {
     "test": "simpleunit ./test"
-  }
-, "dependencies": {
-  }
-, "devDependencies": {
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "simpleasync": "0.0.6",
     "simpleunit": "0.0.7"
   }
 }
