@@ -17,9 +17,21 @@ In Linux, you should use `sudo npm ...` to install global modules
 
 In any working directory, create an application
 ```
-ajgenesis express:create demo
-cd demo
+mkdir myapp
+cd myapp
+ajg install express
+ajg init
 npm install
+```
+
+Edit `ajgenesis/models/project.json` created by the above init command
+
+project.json
+```json
+{
+    "name": "myapp",
+    "title": "Myapp"
+}
 ```
 
 The created directory contains the seed of an Express 4.x application.
@@ -27,18 +39,10 @@ The created directory contains the seed of an Express 4.x application.
 And there is a subdirectory `ajgenesis` with:
 
 - `ajgenesis/models`: where the free model files reside
-- `ajgenesis/tasks`: tasks to run
-- `ajgenesis/templates`: templates to be used
-- `ajgenesis/libs`: additional modules used by tasks
+- `ajgenesis/module`: verbs to run in express ajgenesis module, with libs and templates
+- `ajgenesis/modules`: additional ajgenesis modules
 
-Install additional ajgenesis modules:
-```
-ajgenesis install entity
-ajgenesis install model
-```
-The modules code and templates are installed under `ajgenesis/modules` folder.
-
-Let add some entities and propeties:
+Let add some entities and propeties, using then `entity` module (installed under `ajgenesis/modules/entity`):
 ```
 ajgenesis entity:add customer
 ajgenesis entity:addproperty customer name
