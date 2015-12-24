@@ -1,6 +1,16 @@
 
 var models = require('../ajgenesis/module/libs/models');
 
+exports['Complete empty model'] = function (test) {
+    var model = {  };
+    
+    models.completeModel(model);
+    
+    test.ok(model.project);
+    test.ok(model.project.name);
+    test.ok(model.project.title);
+};
+
 exports['Complete model'] = function (test) {
     var model = { project: { name: 'project' } };
     
@@ -12,7 +22,9 @@ exports['Complete model'] = function (test) {
 
 exports['Complete model with entities and properties'] = function (test) {
     var model = { 
-        name: 'project',
+        project: {
+            name: 'project'
+        },
         
         entities: [
             { 
@@ -34,7 +46,7 @@ exports['Complete model with entities and properties'] = function (test) {
     
     models.completeModel(model);
     
-    test.equal(model.title, 'Project');
+    test.equal(model.project.title, 'Project');
 
     test.equal(model.entities[0].setname, 'customers');
     test.equal(model.entities[1].setname, 'suppliers');
@@ -65,7 +77,9 @@ exports['Complete model with entities and properties'] = function (test) {
 
 exports['Complete model with reference'] = function (test) {
     var model = { 
-        name: 'project',
+        project: {
+            name: 'project'
+        },
         
         entities: [
             { 
@@ -88,7 +102,7 @@ exports['Complete model with reference'] = function (test) {
     
     models.completeModel(model);
     
-    test.equal(model.title, 'Project');
+    test.equal(model.project.title, 'Project');
 
     test.equal(model.entities[0].title, 'Employee');
     test.equal(model.entities[0].settitle, 'Employees');
