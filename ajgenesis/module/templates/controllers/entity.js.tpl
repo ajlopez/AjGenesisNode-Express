@@ -75,7 +75,7 @@ function add(req, res) {
         if (err)
             error(err, req, res);
         else
-            index(req, res);
+            list(req, res);
     });
 }
 
@@ -117,7 +117,7 @@ function remove(req, res) {
         if (err)
             error(err, req, res);
         else
-            index(req,res);
+            list(req,res);
     });
 }
 
