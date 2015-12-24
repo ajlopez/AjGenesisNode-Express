@@ -1,5 +1,6 @@
 
 var utils = require('./utils');
+var path = require('path');
 
 function getEntityByName(entities, name) {
     return utils.find(entities, 'name', name);
@@ -74,8 +75,11 @@ function completeModel(model) {
     if (!model)
         return;
         
-    if (model.name && !model.title)
-        model.title = utils.capitalize(model.name);
+    if (!model.project)
+        model.project = {};
+    
+    if (model.project && !model.project.name)
+        model.project.name = path.basename('.');
         
     if (model.project && model.project.name && !model.project.title)
         model.project.title = utils.capitalize(model.project.name);
